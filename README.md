@@ -80,6 +80,46 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ---
 
+## 🏆 Certifications & Achievements
+
+### 🔖 HackerRank Badges
+
+<p align="left">
+  <a href="https://www.hackerrank.com/abumdselim" target="_blank">
+    <img src="https://img.shields.io/badge/Python-5%20Stars-F7DF1E?style=for-the-badge&logo=hackerrank&logoColor=black" alt="Python 5 Stars" />
+  </a>&nbsp;
+  <a href="https://www.hackerrank.com/abumdselim" target="_blank">
+    <img src="https://img.shields.io/badge/Problem%20Solving-3%20Stars-C0C0C0?style=for-the-badge&logo=hackerrank&logoColor=black" alt="Problem Solving 3 Stars" />
+  </a>
+</p>
+
+### 📜 Verified Certificates
+
+<p align="left">
+  <a href="https://www.hackerrank.com/certificates/487a8e53295a" target="_blank">
+    <img src="https://img.shields.io/badge/Frontend%20Developer%20(React)-Verified-00EA64?style=for-the-badge&logo=hackerrank&logoColor=white" alt="Frontend Developer React" />
+  </a>
+</p>
+<p align="left">
+  <a href="https://www.hackerrank.com/certificates/faa49ff2acc4" target="_blank">
+    <img src="https://img.shields.io/badge/SQL%20Advanced-Verified-00EA64?style=for-the-badge&logo=hackerrank&logoColor=white" alt="SQL Advanced" />
+  </a>&nbsp;
+  <a href="https://www.hackerrank.com/certificates/85bd33393ba1" target="_blank">
+    <img src="https://img.shields.io/badge/REST%20API%20Intermediate-Verified-00EA64?style=for-the-badge&logo=hackerrank&logoColor=white" alt="REST API Intermediate" />
+  </a>&nbsp;
+  <a href="https://www.hackerrank.com/certificates/27f28244e387" target="_blank">
+    <img src="https://img.shields.io/badge/Go%20Intermediate-Verified-00EA64?style=for-the-badge&logo=hackerrank&logoColor=white" alt="Go Intermediate" />
+  </a>
+</p>
+
+<p align="left">
+  <a href="https://www.hackerrank.com/abumdselim" target="_blank">
+    <img src="https://img.shields.io/badge/View%20Full%20Profile-HackerRank-2EC866?style=for-the-badge&logo=hackerrank&logoColor=white" alt="HackerRank Profile" />
+  </a>
+</p>
+
+---
+
 ## 📊 GitHub Stats
 
 <div align="center">
