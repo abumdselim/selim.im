@@ -85,6 +85,10 @@ body {
   color: var(--color-text-primary);
 }
 
+.hamburger {
+  position: relative;
+}
+
 .hamburger,
 .hamburger::before,
 .hamburger::after {
@@ -147,7 +151,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%; /* Adjusts framing slightly */
+  object-position: center 15%;
+  will-change: transform;
   animation: subtleZoom 20s infinite alternate ease-in-out;
 }
 
@@ -270,13 +275,8 @@ body {
 */
 @media (min-width: 768px) {
   
-  .header-logo {
-    order: 2; /* Center logo optionally, but request said: "left side: hamburger, right side: ABU MD. SELIM". Wait, request: "On mobile header...". On desktop we can keep it nice. Let's just adjust order for desktop if needed. */
-  }
-
-  /* Desktop Header Layout: Hamburger left, logo right not strictly required for desktop, but let's show desktop nav. */
   .menu-toggle {
-    display: none; /* Hide hamburger on desktop, show nav */
+    display: none;
   }
   .desktop-nav {
     display: flex;
@@ -295,38 +295,35 @@ body {
     background: linear-gradient(to right, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.7) 40%, rgba(5, 5, 5, 0) 70%);
   }
   
-  /* On desktop, keep bottom gradient minimal */
   .hero-gradient-mobile-bottom {
     background: linear-gradient(to top, rgba(5, 5, 5, 0.8) 0%, rgba(5, 5, 5, 0) 15%);
   }
   
-  /* Image positioning adjustment for wide screens */
   .hero-image-wrapper {
-    /* To balance wide layout, position image right-aligned */
     right: 0;
     left: auto;
-    width: 80%; /* Or 100% with gradient overlay doing the work. Let's stick to 100% width with heavy gradient. */
     width: 100%;
   }
-  
-  /* If we want image on right side explicitly */
-  @media (min-width: 1024px) {
-    .hero-image-wrapper {
-      width: 70%;
-      right: 0;
-      left: auto;
-    }
-    .hero-gradient-desktop-left {
-      /* Gradient to smoothly blend the image edge with the dark left background */
-      background: linear-gradient(to right, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 1) 20%, rgba(5, 5, 5, 0) 100%);
-      width: 50%;
-      left: 0;
-    }
-    .hero {
-      background-color: var(--color-bg); /* ensure solid background left */
-    }
-  }
 
+}
+
+@media (min-width: 1024px) {
+  .hero-image-wrapper {
+    width: 100%;
+    right: 0;
+    left: auto;
+  }
+  .hero-gradient-desktop-left {
+    background: linear-gradient(to right, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 0.9) 30%, rgba(5, 5, 5, 0) 100%);
+    width: 50%;
+    inset: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .hero {
+    background-color: var(--color-bg);
+  }
 }
 
 /* 

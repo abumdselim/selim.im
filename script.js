@@ -3,6 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroSection = document.getElementById('hero');
   const scrollArrow = document.getElementById('scroll-arrow');
   const nextSection = document.getElementById('next-section');
+  const menuToggle = document.querySelector('.menu-toggle');
+
+  // Handle accessibility for mobile menu button on desktop
+  const handleResize = () => {
+    if (menuToggle) {
+      if (window.innerWidth >= 768) {
+        menuToggle.setAttribute('aria-hidden', 'true');
+      } else {
+        menuToggle.removeAttribute('aria-hidden'); // Let screen readers read it on mobile
+      }
+    }
+  };
+  window.addEventListener('resize', handleResize, { passive: true });
+  handleResize();
+
 
   // Handle Sticky Header visibility
   const handleScroll = () => {
