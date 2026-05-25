@@ -3,7 +3,7 @@
 <h1 align="center">Abu Md. Selim</h1>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;Building+Hyperlocal+Apps+for+Bangladesh;Open+Source+Contributor;Always+Learning%2C+Always+Building" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;Building+Hyperlocal+Apps+for+Bangladesh;Open+Source+Contributor;Lead+Ops+%26+Tech+at+Inievo+Technologies;Always+Learning%2C+Always+Building" alt="Typing SVG" />
 </p>
 
 <p align="center">
@@ -105,7 +105,7 @@ I actively contribute to open-source projects and embrace collaborative developm
 - 🔧 **Service Professionals** — Anyone can list themselves as a service provider (plumber, tutor, designer, etc.) and get discovered by neighbors
 - 🤝 **Neighbour Connect** — Add people around you as neighbours and build a trusted local network
 - 👤 **Unified Profile** — One single profile powers your social presence, shop, and service listings simultaneously
-- 📍 **Chattogram-Centric** — Deeply localized features designed around the culture, geography, and needs of Chattogram’s citizens
+- 📍 **Chattogram-Centric** — Deeply localized features designed around the culture, geography, and needs of Chattogram's citizens
 
 #### 🧱 Tech Stack
 
@@ -235,7 +235,7 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ---
 
-## 🏅 GitHub Trophies
+## 🥇 GitHub Trophies
 
 <div align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=abumdselim&theme=tokyonight&no-frame=true&no-bg=true&margin-w=6&row=2&column=4" alt="GitHub Trophies" />
