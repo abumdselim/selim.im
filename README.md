@@ -262,26 +262,26 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ## 🌐 Let's Connect
 
-<div align="center">
+<p align="center">
   <a href="https://www.linkedin.com/in/aabumdselim" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    <img src="https://img.shields.io/badge/-LinkedIn-black?style=flat-square&logo=linkedin" alt="LinkedIn" />
   </a>&nbsp;
   <a href="https://www.facebook.com/aabumdselim" target="_blank">
-    <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook" />
+    <img src="https://img.shields.io/badge/-Facebook-black?style=flat-square&logo=facebook" alt="Facebook" />
   </a>&nbsp;
   <a href="https://www.instagram.com/miishu.s" target="_blank">
-    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
+    <img src="https://img.shields.io/badge/-Instagram-black?style=flat-square&logo=instagram" alt="Instagram" />
   </a>&nbsp;
   <a href="https://www.youtube.com/@mishuabcde" target="_blank">
-    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube" />
+    <img src="https://img.shields.io/badge/-YouTube-black?style=flat-square&logo=youtube" alt="YouTube" />
   </a>&nbsp;
   <a href="mailto:selim@inievo.com">
-    <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+    <img src="https://img.shields.io/badge/-Gmail-black?style=flat-square&logo=gmail" alt="Email" />
   </a>&nbsp;
   <a href="https://t.me/abumdselim" target="_blank">
-    <img src="https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram" />
+    <img src="https://img.shields.io/badge/-Telegram-black?style=flat-square&logo=telegram" alt="Telegram" />
   </a>&nbsp;
   <a href="https://github.com/abumdselim" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    <img src="https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github" alt="GitHub" />
   </a>
-</div>
+</p>
