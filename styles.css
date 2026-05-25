@@ -1,0 +1,342 @@
+/* 
+  Theme Variables & Resets 
+*/
+:root {
+  --color-bg: #050505;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-accent: #222222;
+  
+  --font-primary: 'Outfit', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  
+  --spacing-base: 1rem;
+  
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.2s ease-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* 
+  Sticky Header
+*/
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: rgba(5, 5, 5, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform var(--transition-medium);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-header.is-visible {
+  transform: translateY(0);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.header-logo {
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+}
+
+.hamburger::before { transform: translateY(-6px); }
+.hamburger::after { transform: translateY(6px); }
+
+.desktop-nav {
+  display: none;
+  gap: 2rem;
+}
+
+.desktop-nav a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color var(--transition-fast);
+}
+
+.desktop-nav a:hover {
+  color: var(--color-text-primary);
+}
+
+/* 
+  Hero Section
+*/
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100dvh; /* robust viewport height */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%; /* Adjusts framing slightly */
+  animation: subtleZoom 20s infinite alternate ease-in-out;
+}
+
+@keyframes subtleZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Gradient for mobile - Bottom shadow only to pop arrow */
+.hero-gradient-mobile-bottom {
+  background: linear-gradient(to top, rgba(5, 5, 5, 0.9) 0%, rgba(5, 5, 5, 0) 30%);
+}
+
+/* Gradient for desktop - Left fade for text */
+.hero-gradient-desktop-left {
+  display: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 5%;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+  /* Hidden on mobile by default */
+  display: none; 
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-title {
+  font-family: var(--font-primary);
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp var(--transition-slow) forwards 0.5s;
+}
+
+.hero-subtitle {
+  font-family: var(--font-secondary);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp var(--transition-slow) forwards 0.7s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll Arrow */
+.scroll-arrow {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 1rem;
+  animation: float 2.5s infinite ease-in-out;
+  transition: color var(--transition-fast);
+}
+
+.scroll-arrow:hover {
+  color: #fff;
+}
+
+@keyframes float {
+  0% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 10px); }
+  100% { transform: translate(-50%, 0); }
+}
+
+/* 
+  Next Section (Demo)
+*/
+.next-section {
+  padding: 8rem 5%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #080808;
+}
+
+.next-section h2 {
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.next-section p {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* 
+  Responsive Adjustments (Desktop)
+*/
+@media (min-width: 768px) {
+  
+  .header-logo {
+    order: 2; /* Center logo optionally, but request said: "left side: hamburger, right side: ABU MD. SELIM". Wait, request: "On mobile header...". On desktop we can keep it nice. Let's just adjust order for desktop if needed. */
+  }
+
+  /* Desktop Header Layout: Hamburger left, logo right not strictly required for desktop, but let's show desktop nav. */
+  .menu-toggle {
+    display: none; /* Hide hamburger on desktop, show nav */
+  }
+  .desktop-nav {
+    display: flex;
+    order: 1;
+  }
+  .header-logo {
+    order: 2;
+  }
+
+  .hero-content {
+    display: flex;
+  }
+
+  .hero-gradient-desktop-left {
+    display: block;
+    background: linear-gradient(to right, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.7) 40%, rgba(5, 5, 5, 0) 70%);
+  }
+  
+  /* On desktop, keep bottom gradient minimal */
+  .hero-gradient-mobile-bottom {
+    background: linear-gradient(to top, rgba(5, 5, 5, 0.8) 0%, rgba(5, 5, 5, 0) 15%);
+  }
+  
+  /* Image positioning adjustment for wide screens */
+  .hero-image-wrapper {
+    /* To balance wide layout, position image right-aligned */
+    right: 0;
+    left: auto;
+    width: 80%; /* Or 100% with gradient overlay doing the work. Let's stick to 100% width with heavy gradient. */
+    width: 100%;
+  }
+  
+  /* If we want image on right side explicitly */
+  @media (min-width: 1024px) {
+    .hero-image-wrapper {
+      width: 70%;
+      right: 0;
+      left: auto;
+    }
+    .hero-gradient-desktop-left {
+      /* Gradient to smoothly blend the image edge with the dark left background */
+      background: linear-gradient(to right, rgba(5, 5, 5, 1) 0%, rgba(5, 5, 5, 1) 20%, rgba(5, 5, 5, 0) 100%);
+      width: 50%;
+      left: 0;
+    }
+    .hero {
+      background-color: var(--color-bg); /* ensure solid background left */
+    }
+  }
+
+}
+
+/* 
+  Mobile specific header fix (requested: "hamburger left, ABU MD. SELIM right")
+*/
+@media (max-width: 767px) {
+  .header-container {
+    justify-content: flex-start;
+  }
+  .header-logo {
+    margin-left: auto; /* Push to right */
+  }
+}
