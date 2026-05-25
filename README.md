@@ -101,7 +101,7 @@ I actively contribute to open-source projects and embrace collaborative developm
 - 🔧 **Service Professionals** — Anyone can list themselves as a service provider (plumber, tutor, designer, etc.) and get discovered by neighbors
 - 🤝 **Neighbour Connect** — Add people around you as neighbours and build a trusted local network
 - 👤 **Unified Profile** — One single profile powers your social presence, shop, and service listings simultaneously
-- 📍 **Chattogram-Centric** — Deeply localized features designed around the culture, geography, and needs of Chattogram's citizens
+- 📍 **Chattogram-Centric** — Deeply localized features designed around the culture, geography, and needs of Chattogram’s citizens
 
 #### 🧱 Tech Stack
 
@@ -123,19 +123,24 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 <br/>
 
-<p>
-  <sub>An initiative by</sub>&nbsp;&nbsp;
-  <a href="https://inievo.com" target="_blank">
-    <img src="https://res.cloudinary.com/dp5ap39r6/image/upload/v1777712331/Inievo_v3ow3t.png" alt="Inievo Technologies" height="28" />
-  </a>
-</p>
-
-<p>
-  <sub><strong>Contributor</strong></sub><br/>
-  <sub>
-    <a href="https://github.com/abumdselim">@abumdselim</a> — Abu Md. Selim &nbsp;·&nbsp; Technical Lead, Inievo Technologies
-  </sub>
-</p>
+<table>
+  <tr>
+    <td valign="top" width="50%">
+      <sub>An initiative by</sub><br/><br/>
+      <a href="https://inievo.com" target="_blank">
+        <img src="https://res.cloudinary.com/dp5ap39r6/image/upload/v1777712331/Inievo_v3ow3t.png" alt="Inievo Technologies" height="32" />
+      </a>
+    </td>
+    <td valign="top" width="50%">
+      <sub><strong>Contributor</strong></sub><br/><br/>
+      <a href="https://github.com/abumdselim">
+        <img src="https://avatars.githubusercontent.com/u/190179079?v=4" width="36" height="36" style="border-radius:50%" alt="abumdselim" />
+      </a><br/>
+      <sub><a href="https://github.com/abumdselim">@abumdselim</a> &nbsp;·&nbsp; Abu Md. Selim</sub><br/>
+      <sub>Technical Lead, Inievo Technologies</sub>
+    </td>
+  </tr>
+</table>
 
 </td>
 </tr>
