@@ -1,55 +1,58 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const header = document.getElementById('site-header');
-  const heroSection = document.getElementById('hero');
-  const scrollArrow = document.getElementById('scroll-arrow');
-  const nextSection = document.getElementById('next-section');
+/**
+ * Hero Section — Scroll & Header Logic
+ * Fixes applied:
+ *  - hamburger aria-hidden set on desktop toggle
+ *  - smooth scroll targets #about section
+ *  - header reveal threshold: 50% of hero height
+ */
+
+(function () {
+  'use strict';
+
+  const header     = document.getElementById('site-header');
+  const scrollBtn  = document.getElementById('scroll-arrow');
+  const hero       = document.getElementById('hero');
   const menuToggle = document.querySelector('.menu-toggle');
 
-  // Handle accessibility for mobile menu button on desktop
-  const handleResize = () => {
-    if (menuToggle) {
-      if (window.innerWidth >= 768) {
-        menuToggle.setAttribute('aria-hidden', 'true');
-      } else {
-        menuToggle.removeAttribute('aria-hidden'); // Let screen readers read it on mobile
-      }
-    }
-  };
-  window.addEventListener('resize', handleResize, { passive: true });
-  handleResize();
+  if (!header || !hero) return;
 
+  // ─── Header reveal on scroll ──────────────────────────────
+  const THRESHOLD = 0.5; // reveal header after 50% of hero is scrolled past
 
-  // Handle Sticky Header visibility
-  const handleScroll = () => {
-    // Show header only after scrolling past the hero section threshold
-    // We can use the hero section height as the threshold
-    const threshold = heroSection.offsetHeight * 0.5; // Show after 50% scroll or full scroll
-    
-    if (window.scrollY > threshold) {
+  function onScroll() {
+    const heroBottom = hero.getBoundingClientRect().bottom;
+    const trigger    = window.innerHeight * (1 - THRESHOLD);
+
+    if (heroBottom < trigger) {
       header.classList.add('is-visible');
     } else {
       header.classList.remove('is-visible');
     }
-  };
+  }
 
-  // Initial check in case user loaded halfway down the page
-  handleScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run once on load
 
-  // Listen to scroll events
-  window.addEventListener('scroll', handleScroll, { passive: true });
-
-  // Handle Arrow Click for smooth scroll
-  if (scrollArrow && nextSection) {
-    scrollArrow.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      // Get the top position of the next section
-      const nextSectionTop = nextSection.getBoundingClientRect().top + window.scrollY;
-      
-      window.scrollTo({
-        top: nextSectionTop,
-        behavior: 'smooth'
-      });
+  // ─── Scroll arrow → smooth scroll to next section ─────────
+  if (scrollBtn) {
+    scrollBtn.addEventListener('click', function () {
+      const target = document.getElementById('about');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   }
-});
+
+  // ─── Hamburger: hide from accessibility on desktop ────────
+  function updateMenuToggleVisibility() {
+    if (!menuToggle) return;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    menuToggle.setAttribute('aria-hidden', isDesktop ? 'true' : 'false');
+    menuToggle.tabIndex = isDesktop ? -1 : 0;
+  }
+
+  const mq = window.matchMedia('(min-width: 768px)');
+  mq.addEventListener('change', updateMenuToggleVisibility);
+  updateMenuToggleVisibility();
+
+})();
