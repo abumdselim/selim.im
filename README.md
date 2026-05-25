@@ -1,21 +1,26 @@
 <!-- Profile README for abumdselim -->
 
-<h1 align="center">Hi there, I'm Abu Md. Selim 👋</h1>
+<h1 align="center">Abu Md. Selim</h1>
 
 <p align="center">
-  <b>Full Stack Developer · Problem Solver · Lifelong Learner</b><br/>
-  📍 Chattogram, Bangladesh
+  <samp>Full Stack Developer &nbsp;&bull;&nbsp; Open Source Enthusiast &nbsp;&bull;&nbsp; Chattogram, Bangladesh</samp>
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=abumdselim&label=Profile+Views&color=0e75b6&style=flat" alt="Profile Views" />
 </p>
 
 ---
 
-## 🧑‍💻 About Me
+### 💼 About Me
 
-- 🌍 Based in **Chattogram, Bangladesh**
-- 💡 Passionate about building full-stack web applications
-- 🔭 Always exploring new technologies and open-source projects
-- 🤝 Open to collaborating on interesting projects
-- 📫 Reach me via GitHub or connect with me below
+I am a passionate **Full Stack Developer** based in Chattogram, Bangladesh, with a strong focus on building scalable, maintainable, and user-centric web applications. I thrive at the intersection of clean architecture and thoughtful UI/UX, bridging the gap between robust backend systems and polished frontend experiences.
+
+With a deep interest in modern web technologies, I continuously refine my craft — whether it's architecting RESTful APIs, optimizing database performance, or crafting responsive interfaces with precision. I believe great software is not just functional, but also elegant and accessible.
+
+I actively contribute to open-source projects and embrace collaborative development, valuing clean code, meaningful documentation, and engineering best practices. I am always open to new challenges, impactful collaborations, and learning opportunities.
+
+> *"Code is like humor. When you have to explain it, it's bad."* — Cory House
 
 ---
 
@@ -92,10 +97,4 @@
 
 <p align="center">
   <a href="https://github.com/abumdselim"><img src="https://img.shields.io/badge/GitHub-abumdselim-181717?style=for-the-badge&logo=github" /></a>
-</p>
-
----
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=abumdselim&label=Profile+Views&color=blue&style=for-the-badge" alt="Profile Views" />
 </p>
