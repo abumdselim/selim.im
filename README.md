@@ -82,18 +82,30 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ## 📊 GitHub Stats
 
-<p align="center">
-  <img src="https://streak-stats.demolab.com/?user=abumdselim&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=abumdselim&theme=tokyonight" alt="Profile Summary" />
-</p>
+[![GitHub Streak](https://streak-stats.demolab.com/?user=abumdselim&theme=tokyonight&hide_border=true&border_radius=10&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
 
-<p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=abumdselim&theme=tokyonight" alt="Repos per Language" />&nbsp;
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=abumdselim&theme=tokyonight" alt="Most Commit Language" />
-</p>
+</div>
+
+<div align="center">
+
+[![Profile Summary](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)
+
+</div>
+
+<div align="center">
+
+[![Repos per Language](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)&nbsp;&nbsp;
+[![Most Commit Language](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)
+
+</div>
+
+<div align="center">
+
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=abumdselim&theme=tokyo-night&hide_border=true&radius=8)](https://github.com/abumdselim)
+
+</div>
 
 ---
 
