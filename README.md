@@ -3,7 +3,11 @@
 <h1 align="center">Abu Md. Selim</h1>
 
 <p align="center">
-  <samp>Full Stack Developer &nbsp;&bull;&nbsp; Open Source Enthusiast &nbsp;&bull;&nbsp; Chattogram, Bangladesh</samp>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;Building+Hyperlocal+Apps+for+Bangladesh;Open+Source+Contributor;Always+Learning%2C+Always+Building" alt="Typing SVG" />
+</p>
+
+<p align="center">
+  <samp>Chattogram, Bangladesh</samp>
 </p>
 
 <p align="center">
@@ -228,6 +232,14 @@ I actively contribute to open-source projects and embrace collaborative developm
     <img src="https://img.shields.io/badge/View%20Full%20Profile-HackerRank-2EC866?style=for-the-badge&logo=hackerrank&logoColor=white" alt="HackerRank Profile" />
   </a>
 </p>
+
+---
+
+## 🏅 GitHub Trophies
+
+<div align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=abumdselim&theme=tokyonight&no-frame=true&no-bg=true&margin-w=6&row=2&column=4" alt="GitHub Trophies" />
+</div>
 
 ---
 
