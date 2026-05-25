@@ -82,7 +82,7 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ## 🚀 Featured Projects
 
-<table>
+<table width="100%">
 <tr>
 <td>
 
@@ -116,24 +116,24 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 <br/>
 
-<table>
+<table width="100%">
   <tr>
-    <td valign="top" width="40%">
+    <td align="left" valign="middle" width="33%">
       <sub><strong>🔗 Links</strong></sub><br/><br/>
-      🌍 <strong>Live</strong> &nbsp; <a href="https://thechattala.com">thechattala.com</a><br/><br/>
-      💻 <strong>Source</strong> &nbsp; <a href="https://github.com/abumdselim/thechattala">abumdselim/thechattala</a>
+      🌍 &nbsp;<strong>Live</strong> &nbsp;—&nbsp; <a href="https://thechattala.com">thechattala.com</a><br/><br/>
+      💻 &nbsp;<strong>Source</strong> &nbsp;—&nbsp; <a href="https://github.com/abumdselim/thechattala">abumdselim/thechattala</a>
     </td>
-    <td valign="top" width="30%">
+    <td align="center" valign="middle" width="33%">
       <sub>An initiative by</sub><br/><br/>
       <a href="https://inievo.com" target="_blank">
         <img src="https://res.cloudinary.com/dp5ap39r6/image/upload/v1777712331/Inievo_v3ow3t.png" alt="Inievo Technologies" height="30" />
       </a>
     </td>
-    <td valign="top" width="30%">
+    <td align="left" valign="middle" width="33%">
       <sub><strong>Contributor</strong></sub><br/><br/>
       <a href="https://github.com/abumdselim">
         <img src="https://avatars.githubusercontent.com/u/190179079?v=4" width="34" height="34" style="border-radius:50%" alt="abumdselim" />
-      </a><br/>
+      </a><br/><br/>
       <sub><a href="https://github.com/abumdselim">@abumdselim</a> &nbsp;·&nbsp; Abu Md. Selim</sub><br/>
       <sub>Technical Lead, Inievo Technologies</sub>
     </td>
