@@ -82,11 +82,30 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ## 🚀 Featured Projects
 
-### 🏗️ The Chattala
+<table>
+<tr>
+<td>
 
-> A modern, AI-powered full-stack web platform built with Next.js and TypeScript — designed for real-world scalability, clean architecture, and seamless user experience. Deployed on Firebase App Hosting with automated CI/CD on every push to main.
+<p align="center">
+  <a href="https://thechattala.com" target="_blank">
+    <img src="https://res.cloudinary.com/dp5ap39r6/image/upload/v1779743138/1_mfs0ff.png" alt="The Chattala" width="320" />
+  </a>
+</p>
 
-<p align="left">
+**The Chattala** is a **hyperlocal community super-app** built exclusively for the people of **Chattogram, Bangladesh** — bringing together neighbors, local businesses, and service professionals all in one platform.
+
+#### ✨ Key Features
+
+- 🏘️ **Community Feed** — A neighborhood-first social feed where residents share updates, events, and local news relevant to their area
+- 🛍️ **Hyperlocal Marketplace** — Users can open their own shop directly from their profile — no separate account needed
+- 🔧 **Service Professionals** — Anyone can list themselves as a service provider (plumber, tutor, designer, etc.) and get discovered by neighbors
+- 🤝 **Neighbour Connect** — Add people around you as neighbours and build a trusted local network
+- 👤 **Unified Profile** — One single profile powers your social presence, shop, and service listings simultaneously
+- 📍 **Chattogram-Centric** — Deeply localized features designed around the culture, geography, and needs of Chattogram's citizens
+
+#### 🧱 Tech Stack
+
+<p>
   <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwind-css&logoColor=white" />
@@ -95,11 +114,32 @@ I actively contribute to open-source projects and embrace collaborative developm
   <img src="https://img.shields.io/badge/Genkit_AI-4285F4?style=flat-square&logo=google&logoColor=white" />
 </p>
 
+#### 🔗 Links
+
 | | |
 |---|---|
 | 🌍 **Live** | [thechattala.com](https://thechattala.com) |
 | 💻 **Source** | [github.com/abumdselim/thechattala](https://github.com/abumdselim/thechattala) |
-| 🏗️ **By** | Inievo Technologies |
+
+<br/>
+
+<p>
+  <sub>An initiative by</sub>&nbsp;&nbsp;
+  <a href="https://inievo.com" target="_blank">
+    <img src="https://res.cloudinary.com/dp5ap39r6/image/upload/v1777712331/Inievo_v3ow3t.png" alt="Inievo Technologies" height="28" />
+  </a>
+</p>
+
+<p>
+  <sub><strong>Contributor</strong></sub><br/>
+  <sub>
+    <a href="https://github.com/abumdselim">@abumdselim</a> — Abu Md. Selim &nbsp;·&nbsp; Technical Lead, Inievo Technologies
+  </sub>
+</p>
+
+</td>
+</tr>
+</table>
 
 ---
 
