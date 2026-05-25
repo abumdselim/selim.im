@@ -121,6 +121,9 @@ I actively contribute to open-source projects and embrace collaborative developm
   <a href="https://www.instagram.com/miishu.s" target="_blank">
     <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
   </a>&nbsp;
+  <a href="https://www.youtube.com/@mishuabcde" target="_blank">
+    <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube" />
+  </a>&nbsp;
   <a href="mailto:selim@inievo.com">
     <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>&nbsp;
