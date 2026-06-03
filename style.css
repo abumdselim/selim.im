@@ -90,17 +90,23 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
-   HEADER
+   HEADER — hidden by default, appears after scrolling past hero
    ============================================================ */
 .top-sticky-header {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
     padding: 24px 7%;
-    transition: var(--transition);
+    transition: opacity 0.4s ease, transform 0.4s ease, background 0.35s ease, padding 0.35s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
 }
 
 .top-sticky-header.scrolled {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
     background: rgba(8,8,8,0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -233,7 +239,7 @@ body.menu-open::after {
 }
 
 /* ============================================================
-   HERO
+   HERO — full-viewport, image shown in full on desktop
    ============================================================ */
 .hero {
     position: relative;
@@ -250,11 +256,20 @@ body.menu-open::after {
     inset: 0;
 }
 
+/* Desktop: show full image (object-fit: contain) */
 .profile-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center top;
+}
+
+/* Mobile: cover to fill viewport */
+@media (max-width: 768px) {
+    .profile-img {
+        object-fit: cover;
+        object-position: center top;
+    }
 }
 
 .bottom-shadow {
@@ -445,7 +460,6 @@ body.menu-open::after {
     height: 100%;
     background: linear-gradient(90deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.12) 100%);
     border-radius: 100px;
-    transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Availability badge */
@@ -478,7 +492,6 @@ body.menu-open::after {
     100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .vision-inner {
         grid-template-columns: 1fr;
@@ -602,13 +615,11 @@ body.menu-open::after {
     letter-spacing: 0.04em;
 }
 
-/* Grid placements */
 .github-card  { grid-column: span 5; }
 .cert-card    { grid-column: span 4; }
 .skills-card  { grid-column: span 7; }
 .location-card{ grid-column: span 5; }
 
-/* GitHub */
 .github-stats-container { display: flex; flex-direction: column; gap: 0; }
 
 .github-fallback {
@@ -626,7 +637,6 @@ body.menu-open::after {
 .gh-text h4 { font-size: 0.9rem; color: var(--text-primary); margin-bottom: 4px; }
 .gh-text p  { font-size: 0.8rem; color: var(--text-muted); }
 
-/* Certs */
 .cert-list { display: flex; flex-direction: column; gap: 20px; }
 
 .cert-item {
@@ -660,7 +670,6 @@ body.menu-open::after {
     letter-spacing: 0.04em;
 }
 
-/* Skills */
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -681,7 +690,6 @@ body.menu-open::after {
     color: var(--text-primary);
 }
 
-/* Location card */
 .location-card {
     display: flex;
     flex-direction: column;
@@ -735,7 +743,6 @@ body.menu-open::after {
     padding: 48px;
     background: var(--bg-3);
     transition: background var(--transition);
-    border: 1px solid transparent;
 }
 
 .service-card:hover { background: var(--bg-2); }

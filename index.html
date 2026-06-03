@@ -410,11 +410,14 @@
     </footer>
 
     <script>
-        // HEADER SCROLL BEHAVIOR
+        // HEADER SCROLL BEHAVIOR — hidden on hero, visible after scrolling past hero
         const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 60);
-        });
+        function updateHeader() {
+            const heroHeight = document.getElementById('home').offsetHeight;
+            header.classList.toggle('scrolled', window.scrollY > heroHeight * 0.6);
+        }
+        window.addEventListener('scroll', updateHeader);
+        updateHeader();
 
         // MOBILE HAMBURGER
         const hamburger = document.getElementById('hamburger');
