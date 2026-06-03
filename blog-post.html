@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... — Abu Md. Selim</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgbyoqvpt/image/upload/q_auto/f_auto/v1780357025/Screenshot_17_ofwahe.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* READING PROGRESS BAR */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: #fff;
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* POST HERO */
+        .post-hero {
+            padding: 140px 0 60px;
+            max-width: 760px;
+            margin: 0 auto;
+            padding-inline: 40px;
+        }
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .post-category {
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+        }
+        .post-dot { color: rgba(255,255,255,0.15); }
+        .post-date, .post-read-time {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.25);
+        }
+        .post-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+        .post-excerpt {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.75;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 20px;
+            margin-bottom: 40px;
+        }
+        .post-cover {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            display: block;
+            border-radius: 4px;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        /* POST CONTENT */
+        .post-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.75);
+        }
+        .post-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 56px 0 20px;
+            line-height: 1.3;
+        }
+        .post-content h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin: 40px 0 16px;
+        }
+        .post-content p { margin-bottom: 24px; }
+        .post-content a { color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 3px; }
+        .post-content blockquote {
+            border-left: 2px solid rgba(255,255,255,0.2);
+            padding-left: 24px;
+            margin: 36px 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.65;
+        }
+        .post-content ul, .post-content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+        .post-content li { margin-bottom: 8px; }
+        .post-content code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85em;
+            background: rgba(255,255,255,0.06);
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: rgba(255,255,255,0.8);
+        }
+        .post-content pre {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 6px;
+            padding: 24px;
+            overflow-x: auto;
+            margin: 32px 0;
+        }
+        .post-content pre code { background: transparent; padding: 0; }
+        .post-content img {
+            width: 100%;
+            border-radius: 4px;
+            margin: 32px 0;
+        }
+        .post-content hr {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin: 48px 0;
+        }
+
+        /* POST FOOTER */
+        .post-tags {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 40px 60px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .post-tag {
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            padding: 5px 12px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            color: rgba(255,255,255,0.35);
+        }
+        .post-nav {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 40px 100px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .back-link {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #fff; }
+
+        /* NOT FOUND */
+        .post-not-found {
+            text-align: center;
+            padding: 200px 20px;
+            color: rgba(255,255,255,0.25);
+        }
+        .post-not-found h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .post-hero, .post-content, .post-tags, .post-nav { padding-inline: 20px; }
+            .post-hero { padding-top: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <header class="top-sticky-header scrolled" id="header">
+        <div class="header-inner">
+            <a href="/" class="top-logo" style="text-decoration:none;">ABU MD. SELIM</a>
+            <nav class="desktop-nav">
+                <a href="/#about">About</a>
+                <a href="/#agency">Venture</a>
+                <a href="/#portfolio">Stack</a>
+                <a href="/#services">Services</a>
+                <a href="/#projects">Work</a>
+                <a href="/blog.html" style="color:#fff;">Blog</a>
+                <a href="/#contact" class="nav-cta">Let's Talk</a>
+            </nav>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+        <a href="/#about">About</a>
+        <a href="/#agency">Venture</a>
+        <a href="/#portfolio">Stack</a>
+        <a href="/#services">Services</a>
+        <a href="/#projects">Work</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+
+    <main id="postMain"></main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">ABU MD. SELIM</div>
+            <div class="footer-copy">© 2025 Abu Md. Selim. All rights reserved.</div>
+            <div class="footer-links"><a href="https://inievo.com" target="_blank">Inievo Technologies</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = 'https://hvowhpvokaiwionmymzm.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2b3docHZva2Fpd2lvbm15bXptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTExMDYsImV4cCI6MjA5NjAyNzEwNn0.J6SzBI56D9lqXyHK9666kJJd0rXVIhgANa71EYQzgU0';
+
+        const slug = new URLSearchParams(window.location.search).get('slug');
+
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        async function loadPost() {
+            if (!slug) { renderNotFound(); return; }
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/posts?slug=eq.${encodeURIComponent(slug)}&status=eq.published&limit=1`, {
+                    headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+                });
+                const data = await res.json();
+                if (!data.length) { renderNotFound(); return; }
+                renderPost(data[0]);
+            } catch(e) { renderNotFound(); }
+        }
+
+        function renderPost(post) {
+            document.title = `${post.title} — Abu Md. Selim`;
+            if (post.meta_description) {
+                document.querySelector('meta[name="description"]') || document.head.insertAdjacentHTML('beforeend', `<meta name="description" content="${post.meta_description}">`);
+            }
+            document.getElementById('postMain').innerHTML = `
+                <article>
+                    <div class="post-hero">
+                        <div class="post-meta">
+                            ${post.category ? `<span class="post-category">${post.category}</span><span class="post-dot">·</span>` : ''}
+                            <span class="post-date">${formatDate(post.published_at)}</span>
+                            ${post.reading_time ? `<span class="post-dot">·</span><span class="post-read-time">${post.reading_time} min read</span>` : ''}
+                        </div>
+                        <h1>${post.title}</h1>
+                        ${post.excerpt ? `<p class="post-excerpt">${post.excerpt}</p>` : ''}
+                    </div>
+                    ${post.cover_image ? `<img class="post-cover" src="${post.cover_image}" alt="${post.title}" loading="lazy">` : ''}
+                    <div class="post-content">${post.content || ''}</div>
+                    ${post.tags && post.tags.length ? `<div class="post-tags">${post.tags.map(t => `<span class="post-tag">${t}</span>`).join('')}</div>` : ''}
+                    <div class="post-nav"><a class="back-link" href="blog.html">← Back to all posts</a></div>
+                </article>
+            `;
+        }
+
+        function renderNotFound() {
+            document.getElementById('postMain').innerHTML = `
+                <div class="post-not-found">
+                    <h2>Post not found.</h2>
+                    <p style="color:rgba(255,255,255,0.25);margin-top:8px;">It may have been removed or the link is incorrect.</p>
+                    <a href="blog.html" style="display:inline-block;margin-top:32px;font-size:0.82rem;color:rgba(255,255,255,0.35);text-decoration:none;">← Back to Blog</a>
+                </div>
+            `;
+        }
+
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        loadPost();
+
+        // Hamburger
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+    </script>
+</body>
+</html>

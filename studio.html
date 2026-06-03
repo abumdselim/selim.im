@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio — Abu Md. Selim</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgbyoqvpt/image/upload/q_auto/f_auto/v1780357025/Screenshot_17_ofwahe.png">
+    <!-- Tiptap via esm.sh -->
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-font-smoothing: antialiased; }
+        body {
+            background: #0a0a0a;
+            color: rgba(255,255,255,0.85);
+            font-family: 'Inter', system-ui, sans-serif;
+            min-height: 100vh;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+        /* LOGIN SCREEN */
+        .login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .login-box {
+            width: 100%;
+            max-width: 380px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 48px;
+            background: #111;
+        }
+        .login-logo {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+            margin-bottom: 40px;
+        }
+        .login-box h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .login-box p { font-size: 0.82rem; color: rgba(255,255,255,0.3); margin-bottom: 36px; }
+        .login-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .login-input:focus { border-color: rgba(255,255,255,0.25); }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #fff;
+            color: #000;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 8px;
+            transition: opacity 0.2s;
+        }
+        .login-btn:hover { opacity: 0.88; }
+        .login-error {
+            font-size: 0.78rem;
+            color: #ff6b6b;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* STUDIO APP */
+        .studio-app { display: none; }
+        .studio-app.visible { display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* TOP BAR */
+        .studio-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            height: 56px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            position: sticky;
+            top: 0;
+            background: #0a0a0a;
+            z-index: 100;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 24px; }
+        .studio-brand {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+        }
+        .topbar-status {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .status-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+        }
+        .status-dot.saved { background: #4ade80; }
+        .status-dot.saving { background: #facc15; }
+        .topbar-actions { display: flex; gap: 8px; align-items: center; }
+        .btn-outline {
+            padding: 7px 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: rgba(255,255,255,0.55);
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover { border-color: rgba(255,255,255,0.25); color: #fff; }
+        .btn-publish {
+            padding: 7px 20px;
+            background: #fff;
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-publish:hover { opacity: 0.85; }
+        .btn-unpublish {
+            padding: 7px 20px;
+            background: transparent;
+            border: 1px solid rgba(255,100,100,0.3);
+            color: rgba(255,120,120,0.7);
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-unpublish:hover { border-color: rgba(255,100,100,0.6); color: #ff8080; }
+
+        /* MAIN LAYOUT */
+        .studio-main {
+            display: flex;
+            flex: 1;
+        }
+
+        /* SIDEBAR — post list */
+        .studio-sidebar {
+            width: 260px;
+            border-right: 1px solid rgba(255,255,255,0.06);
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .sidebar-header {
+            padding: 20px 20px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .sidebar-title {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.25);
+        }
+        .btn-new {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-new:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+        .post-list { padding: 8px 0; }
+        .post-list-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-left: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .post-list-item:hover { background: rgba(255,255,255,0.03); }
+        .post-list-item.active {
+            background: rgba(255,255,255,0.04);
+            border-left-color: rgba(255,255,255,0.3);
+        }
+        .pli-title {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .pli-meta {
+            font-size: 0.68rem;
+            color: rgba(255,255,255,0.2);
+            display: flex;
+            gap: 8px;
+        }
+        .pli-status {
+            font-size: 0.62rem;
+            padding: 1px 6px;
+            border-radius: 100px;
+        }
+        .pli-status.published { background: rgba(74,222,128,0.1); color: #4ade80; }
+        .pli-status.draft { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.25); }
+
+        /* EDITOR AREA */
+        .studio-editor-wrap {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .editor-meta-fields {
+            padding: 40px 60px 0;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .meta-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .meta-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .meta-field label {
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+        }
+        .meta-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.75);
+            font-size: 0.85rem;
+            padding: 8px 0;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .meta-input:focus { border-bottom-color: rgba(255,255,255,0.3); color: #fff; }
+        .meta-input.full { grid-column: 1 / -1; }
+
+        /* Title input */
+        .title-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            color: #fff;
+            padding: 32px 60px 16px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: block;
+            line-height: 1.2;
+        }
+        .title-input::placeholder { color: rgba(255,255,255,0.12); }
+
+        /* Tiptap editor */
+        .tiptap-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 60px 120px;
+        }
+        .tiptap-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 24px;
+            position: sticky;
+            top: 56px;
+            background: #0a0a0a;
+            z-index: 10;
+        }
+        .toolbar-btn {
+            padding: 5px 10px;
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.78rem;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.15s;
+            font-family: inherit;
+        }
+        .toolbar-btn:hover, .toolbar-btn.is-active {
+            background: rgba(255,255,255,0.07);
+            color: #fff;
+        }
+        .toolbar-sep {
+            width: 1px;
+            height: 20px;
+            background: rgba(255,255,255,0.07);
+            align-self: center;
+            margin: 0 4px;
+        }
+        .ProseMirror {
+            outline: none;
+            min-height: 400px;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.75);
+        }
+        .ProseMirror p.is-editor-empty:first-child::before {
+            content: attr(data-placeholder);
+            color: rgba(255,255,255,0.12);
+            pointer-events: none;
+            float: left;
+            height: 0;
+        }
+        .ProseMirror h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #fff;
+            margin: 48px 0 16px;
+        }
+        .ProseMirror h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin: 32px 0 12px;
+        }
+        .ProseMirror blockquote {
+            border-left: 2px solid rgba(255,255,255,0.15);
+            padding-left: 20px;
+            margin: 28px 0;
+            font-style: italic;
+            color: rgba(255,255,255,0.45);
+        }
+        .ProseMirror code {
+            background: rgba(255,255,255,0.06);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'SF Mono', monospace;
+            font-size: 0.85em;
+        }
+        .ProseMirror pre {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+        .ProseMirror pre code { background: none; padding: 0; }
+        .ProseMirror ul, .ProseMirror ol { padding-left: 24px; margin: 16px 0; }
+        .ProseMirror li { margin-bottom: 6px; }
+        .ProseMirror a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+        .ProseMirror img { max-width: 100%; border-radius: 4px; margin: 24px 0; }
+        .ProseMirror hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 40px 0; }
+        .ProseMirror p { margin-bottom: 20px; }
+
+        /* SETTINGS PANEL */
+        .studio-settings {
+            width: 240px;
+            border-left: 1px solid rgba(255,255,255,0.06);
+            padding: 24px 20px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .settings-section {
+            margin-bottom: 32px;
+        }
+        .settings-label {
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+            margin-bottom: 12px;
+        }
+        .settings-input {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.65);
+            font-size: 0.78rem;
+            padding: 8px 10px;
+            border-radius: 3px;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+            margin-bottom: 8px;
+        }
+        .settings-input:focus { border-color: rgba(255,255,255,0.2); color: #fff; }
+        .settings-textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            color: rgba(255,255,255,0.65);
+            font-size: 0.78rem;
+            padding: 8px 10px;
+            border-radius: 3px;
+            outline: none;
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            line-height: 1.5;
+        }
+        .settings-textarea:focus { border-color: rgba(255,255,255,0.2); color: #fff; }
+        .delete-btn {
+            width: 100%;
+            padding: 8px;
+            background: transparent;
+            border: 1px solid rgba(255,80,80,0.2);
+            color: rgba(255,100,100,0.5);
+            font-size: 0.72rem;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .delete-btn:hover { border-color: rgba(255,80,80,0.5); color: #ff6060; }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(20,20,20,0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .studio-settings { display: none; }
+            .studio-sidebar { width: 200px; }
+            .editor-meta-fields, .tiptap-wrapper, .title-input { padding-inline: 24px; }
+        }
+        @media (max-width: 600px) {
+            .studio-sidebar { display: none; }
+            .studio-topbar { padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">ABU MD. SELIM · STUDIO</div>
+            <h2>Welcome back.</h2>
+            <p>Enter your passphrase to access the writing studio.</p>
+            <input type="password" class="login-input" id="loginPass" placeholder="Passphrase" autocomplete="current-password">
+            <button class="login-btn" id="loginBtn">Enter Studio</button>
+            <div class="login-error" id="loginError">Incorrect passphrase. Try again.</div>
+        </div>
+    </div>
+
+    <!-- STUDIO APP -->
+    <div class="studio-app" id="studioApp">
+
+        <!-- TOP BAR -->
+        <div class="studio-topbar">
+            <div class="topbar-left">
+                <span class="studio-brand">Studio</span>
+                <div class="topbar-status">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Ready</span>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="btn-outline" id="btnPreview">Preview</button>
+                <button class="btn-outline" id="btnSaveDraft">Save Draft</button>
+                <button class="btn-publish" id="btnPublish">Publish</button>
+                <button class="btn-unpublish" id="btnUnpublish" style="display:none;">Unpublish</button>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="studio-main">
+
+            <!-- SIDEBAR -->
+            <div class="studio-sidebar">
+                <div class="sidebar-header">
+                    <span class="sidebar-title">Posts</span>
+                    <button class="btn-new" id="btnNewPost">+ New</button>
+                </div>
+                <div class="post-list" id="postList"></div>
+            </div>
+
+            <!-- EDITOR -->
+            <div class="studio-editor-wrap">
+                <div class="editor-meta-fields">
+                    <div class="meta-row">
+                        <div class="meta-field">
+                            <label>Category</label>
+                            <input type="text" class="meta-input" id="metaCategory" placeholder="e.g. Architecture">
+                        </div>
+                        <div class="meta-field">
+                            <label>Tags (comma separated)</label>
+                            <input type="text" class="meta-input" id="metaTags" placeholder="e.g. Laravel, API, Backend">
+                        </div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-field" style="grid-column:1/-1">
+                            <label>Excerpt / Subtitle</label>
+                            <input type="text" class="meta-input" id="metaExcerpt" placeholder="A short compelling summary...">
+                        </div>
+                    </div>
+                </div>
+
+                <input type="text" class="title-input" id="postTitle" placeholder="Title...">
+
+                <div class="tiptap-wrapper">
+                    <div class="tiptap-toolbar" id="toolbar">
+                        <button class="toolbar-btn" data-cmd="bold"><b>B</b></button>
+                        <button class="toolbar-btn" data-cmd="italic"><i>I</i></button>
+                        <div class="toolbar-sep"></div>
+                        <button class="toolbar-btn" data-cmd="h2">H2</button>
+                        <button class="toolbar-btn" data-cmd="h3">H3</button>
+                        <div class="toolbar-sep"></div>
+                        <button class="toolbar-btn" data-cmd="blockquote">❝</button>
+                        <button class="toolbar-btn" data-cmd="bulletList">• List</button>
+                        <button class="toolbar-btn" data-cmd="orderedList">1. List</button>
+                        <div class="toolbar-sep"></div>
+                        <button class="toolbar-btn" data-cmd="code">Code</button>
+                        <button class="toolbar-btn" data-cmd="codeBlock">{ }</button>
+                        <div class="toolbar-sep"></div>
+                        <button class="toolbar-btn" data-cmd="hr">— HR</button>
+                        <button class="toolbar-btn" data-cmd="image">🖼 Image</button>
+                        <button class="toolbar-btn" data-cmd="link">🔗 Link</button>
+                    </div>
+                    <div id="editor"></div>
+                </div>
+            </div>
+
+            <!-- SETTINGS PANEL -->
+            <div class="studio-settings">
+                <div class="settings-section">
+                    <div class="settings-label">Slug</div>
+                    <input type="text" class="settings-input" id="settingsSlug" placeholder="url-friendly-slug">
+                </div>
+                <div class="settings-section">
+                    <div class="settings-label">Cover Image URL</div>
+                    <input type="text" class="settings-input" id="settingsCover" placeholder="https://...">
+                </div>
+                <div class="settings-section">
+                    <div class="settings-label">SEO Title</div>
+                    <input type="text" class="settings-input" id="settingsSeoTitle" placeholder="Meta title...">
+                </div>
+                <div class="settings-section">
+                    <div class="settings-label">SEO Description</div>
+                    <textarea class="settings-textarea" id="settingsSeoDesc" placeholder="Meta description..."></textarea>
+                </div>
+                <div class="settings-section">
+                    <div class="settings-label">Danger Zone</div>
+                    <button class="delete-btn" id="btnDelete">Delete Post</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script type="module">
+        import { Editor } from 'https://esm.sh/@tiptap/core@2.4.0';
+        import StarterKit from 'https://esm.sh/@tiptap/starter-kit@2.4.0';
+        import Placeholder from 'https://esm.sh/@tiptap/extension-placeholder@2.4.0';
+        import Image from 'https://esm.sh/@tiptap/extension-image@2.4.0';
+        import Link from 'https://esm.sh/@tiptap/extension-link@2.4.0';
+
+        // ── CONFIG ──────────────────────────────────────────────
+        const PASSPHRASE = 'selim@studio2026';
+        const SUPABASE_URL = 'https://hvowhpvokaiwionmymzm.supabase.co';
+        const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2b3docHZva2Fpd2lvbm15bXptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTExMDYsImV4cCI6MjA5NjAyNzEwNn0.J6SzBI56D9lqXyHK9666kJJd0rXVIhgANa71EYQzgU0';
+
+        // ── STATE ────────────────────────────────────────────────
+        let currentPost = null;
+        let posts = [];
+        let saveTimer = null;
+        let editor = null;
+        let authed = false;
+
+        // ── DB HELPERS ───────────────────────────────────────────
+        const headers = () => ({ 'apikey': SUPABASE_ANON, 'Authorization': `Bearer ${SUPABASE_ANON}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' });
+
+        async function dbFetch(path, opts = {}) {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { headers: headers(), ...opts });
+            const text = await res.text();
+            return text ? JSON.parse(text) : null;
+        }
+
+        async function loadPosts() {
+            posts = await dbFetch('posts?order=updated_at.desc&select=id,title,slug,status,updated_at,category') || [];
+            renderPostList();
+        }
+
+        async function savePost(status) {
+            setStatus('saving');
+            const title = document.getElementById('postTitle').value.trim() || 'Untitled';
+            const content = editor.getHTML();
+            const slug = document.getElementById('settingsSlug').value.trim() || slugify(title);
+            const payload = {
+                title,
+                slug,
+                content,
+                excerpt: document.getElementById('metaExcerpt').value.trim(),
+                category: document.getElementById('metaCategory').value.trim(),
+                tags: document.getElementById('metaTags').value.split(',').map(t => t.trim()).filter(Boolean),
+                cover_image: document.getElementById('settingsCover').value.trim(),
+                meta_title: document.getElementById('settingsSeoTitle').value.trim(),
+                meta_description: document.getElementById('settingsSeoDesc').value.trim(),
+                reading_time: Math.ceil(content.replace(/<[^>]+>/g,'').split(/\s+/).length / 200),
+                status: status || currentPost?.status || 'draft',
+                ...(status === 'published' && !currentPost?.published_at ? { published_at: new Date().toISOString() } : {}),
+                ...(status === 'draft' ? { published_at: null } : {})
+            };
+            let result;
+            if (currentPost?.id) {
+                result = await dbFetch(`posts?id=eq.${currentPost.id}`, { method: 'PATCH', body: JSON.stringify(payload) });
+            } else {
+                result = await dbFetch('posts', { method: 'POST', body: JSON.stringify(payload) });
+            }
+            if (result && result[0]) {
+                currentPost = result[0];
+                document.getElementById('settingsSlug').value = currentPost.slug;
+                updatePublishBtns();
+            }
+            await loadPosts();
+            setStatus('saved');
+            toast(status === 'published' ? 'Published ✓' : 'Saved ✓');
+        }
+
+        async function deletePost() {
+            if (!currentPost?.id) return;
+            if (!confirm('Delete this post permanently?')) return;
+            await dbFetch(`posts?id=eq.${currentPost.id}`, { method: 'DELETE' });
+            currentPost = null;
+            newPost();
+            await loadPosts();
+            toast('Post deleted.');
+        }
+
+        // ── UI HELPERS ───────────────────────────────────────────
+        function slugify(str) {
+            return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        }
+
+        function setStatus(s) {
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            dot.className = 'status-dot ' + s;
+            text.textContent = s === 'saved' ? 'Saved' : s === 'saving' ? 'Saving…' : 'Ready';
+        }
+
+        function toast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 2800);
+        }
+
+        function updatePublishBtns() {
+            const isPublished = currentPost?.status === 'published';
+            document.getElementById('btnPublish').style.display = isPublished ? 'none' : '';
+            document.getElementById('btnUnpublish').style.display = isPublished ? '' : 'none';
+        }
+
+        function renderPostList() {
+            const list = document.getElementById('postList');
+            list.innerHTML = posts.map(p => `
+                <div class="post-list-item ${currentPost?.id === p.id ? 'active' : ''}" data-id="${p.id}">
+                    <div class="pli-title">${p.title || 'Untitled'}</div>
+                    <div class="pli-meta">
+                        <span class="pli-status ${p.status}">${p.status}</span>
+                        <span>${p.category || ''}</span>
+                    </div>
+                </div>
+            `).join('');
+            list.querySelectorAll('.post-list-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const post = posts.find(p => p.id === el.dataset.id);
+                    if (post) loadPostIntoEditor(post.id);
+                });
+            });
+        }
+
+        async function loadPostIntoEditor(id) {
+            const data = await dbFetch(`posts?id=eq.${id}&limit=1`);
+            if (!data || !data[0]) return;
+            currentPost = data[0];
+            document.getElementById('postTitle').value = currentPost.title || '';
+            document.getElementById('metaCategory').value = currentPost.category || '';
+            document.getElementById('metaTags').value = (currentPost.tags || []).join(', ');
+            document.getElementById('metaExcerpt').value = currentPost.excerpt || '';
+            document.getElementById('settingsSlug').value = currentPost.slug || '';
+            document.getElementById('settingsCover').value = currentPost.cover_image || '';
+            document.getElementById('settingsSeoTitle').value = currentPost.meta_title || '';
+            document.getElementById('settingsSeoDesc').value = currentPost.meta_description || '';
+            editor.commands.setContent(currentPost.content || '');
+            updatePublishBtns();
+            renderPostList();
+        }
+
+        function newPost() {
+            currentPost = null;
+            document.getElementById('postTitle').value = '';
+            document.getElementById('metaCategory').value = '';
+            document.getElementById('metaTags').value = '';
+            document.getElementById('metaExcerpt').value = '';
+            document.getElementById('settingsSlug').value = '';
+            document.getElementById('settingsCover').value = '';
+            document.getElementById('settingsSeoTitle').value = '';
+            document.getElementById('settingsSeoDesc').value = '';
+            editor.commands.setContent('');
+            updatePublishBtns();
+            renderPostList();
+        }
+
+        // ── TIPTAP EDITOR INIT ───────────────────────────────────
+        function initEditor() {
+            editor = new Editor({
+                element: document.getElementById('editor'),
+                extensions: [
+                    StarterKit,
+                    Placeholder.configure({ placeholder: 'Start writing your thoughts...' }),
+                    Image,
+                    Link.configure({ openOnClick: false })
+                ],
+                content: '',
+                onUpdate: () => {
+                    clearTimeout(saveTimer);
+                    setStatus('');
+                    saveTimer = setTimeout(() => savePost(), 3000);
+                }
+            });
+
+            // Toolbar
+            document.getElementById('toolbar').querySelectorAll('.toolbar-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cmd = btn.dataset.cmd;
+                    if (cmd === 'bold') editor.chain().focus().toggleBold().run();
+                    else if (cmd === 'italic') editor.chain().focus().toggleItalic().run();
+                    else if (cmd === 'h2') editor.chain().focus().toggleHeading({ level: 2 }).run();
+                    else if (cmd === 'h3') editor.chain().focus().toggleHeading({ level: 3 }).run();
+                    else if (cmd === 'blockquote') editor.chain().focus().toggleBlockquote().run();
+                    else if (cmd === 'bulletList') editor.chain().focus().toggleBulletList().run();
+                    else if (cmd === 'orderedList') editor.chain().focus().toggleOrderedList().run();
+                    else if (cmd === 'code') editor.chain().focus().toggleCode().run();
+                    else if (cmd === 'codeBlock') editor.chain().focus().toggleCodeBlock().run();
+                    else if (cmd === 'hr') editor.chain().focus().setHorizontalRule().run();
+                    else if (cmd === 'image') {
+                        const url = prompt('Image URL:');
+                        if (url) editor.chain().focus().setImage({ src: url }).run();
+                    } else if (cmd === 'link') {
+                        const url = prompt('URL:');
+                        if (url) editor.chain().focus().setLink({ href: url }).run();
+                    }
+                });
+            });
+        }
+
+        // ── LOGIN LOGIC ──────────────────────────────────────────
+        function tryLogin() {
+            const pass = document.getElementById('loginPass').value;
+            if (pass === PASSPHRASE) {
+                authed = true;
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('studioApp').className = 'studio-app visible';
+                initEditor();
+                loadPosts();
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+                document.getElementById('loginPass').value = '';
+            }
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', tryLogin);
+        document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+        // ── BUTTON EVENTS ────────────────────────────────────────
+        document.getElementById('btnSaveDraft').addEventListener('click', () => savePost('draft'));
+        document.getElementById('btnPublish').addEventListener('click', () => savePost('published'));
+        document.getElementById('btnUnpublish').addEventListener('click', () => savePost('draft'));
+        document.getElementById('btnDelete').addEventListener('click', deletePost);
+        document.getElementById('btnNewPost').addEventListener('click', newPost);
+        document.getElementById('btnPreview').addEventListener('click', () => {
+            const slug = document.getElementById('settingsSlug').value;
+            if (slug) window.open(`blog-post.html?slug=${slug}`, '_blank');
+            else toast('Save the post first to preview.');
+        });
+
+        // Title auto-slug
+        document.getElementById('postTitle').addEventListener('input', e => {
+            if (!currentPost?.id) {
+                document.getElementById('settingsSlug').value = slugify(e.target.value);
+            }
+        });
+    </script>
+</body>
+</html>

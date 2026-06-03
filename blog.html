@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Abu Md. Selim</title>
+    <meta name="description" content="Thoughts, research, and insights by Abu Md. Selim on software engineering, architecture, and entrepreneurship.">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dgbyoqvpt/image/upload/q_auto/f_auto/v1780357025/Screenshot_17_ofwahe.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* BLOG LISTING PAGE */
+        .blog-page-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .blog-page-hero .label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 20px;
+        }
+        .blog-page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .blog-page-hero p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.45);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* FILTER TABS */
+        .blog-filters {
+            max-width: 1100px;
+            margin: 60px auto 0;
+            padding: 0 40px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        /* BLOG GRID */
+        .blog-listing {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 40px 120px;
+        }
+        .blog-listing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2px;
+        }
+        .blog-listing-card {
+            background: #0d0d0d;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 36px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .blog-listing-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.02);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .blog-listing-card:hover::before { opacity: 1; }
+        .blog-listing-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .card-category {
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+        }
+        .card-date {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.25);
+        }
+        .card-cover {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            background: rgba(255,255,255,0.04);
+        }
+        .blog-listing-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .blog-listing-card p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .card-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            padding: 3px 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            color: rgba(255,255,255,0.3);
+        }
+        .card-read-time {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* EMPTY STATE */
+        .blog-empty {
+            text-align: center;
+            padding: 80px 20px;
+            color: rgba(255,255,255,0.25);
+        }
+        .blog-empty h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* SKELETON */
+        .skeleton-card {
+            background: #0d0d0d;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 36px;
+        }
+        .skeleton-line {
+            height: 14px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.04) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .skeleton-line.short { width: 40%; }
+        .skeleton-line.medium { width: 70%; }
+        .skeleton-line.full { width: 100%; }
+        .skeleton-img { height: 180px; margin-bottom: 20px; }
+        @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+        @media (max-width: 768px) {
+            .blog-filters { padding: 0 20px; }
+            .blog-listing { padding: 40px 20px 80px; }
+            .blog-listing-grid { grid-template-columns: 1fr; }
+            .blog-listing-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-sticky-header scrolled" id="header">
+        <div class="header-inner">
+            <a href="/" class="top-logo" style="text-decoration:none;">ABU MD. SELIM</a>
+            <nav class="desktop-nav">
+                <a href="/#about">About</a>
+                <a href="/#agency">Venture</a>
+                <a href="/#portfolio">Stack</a>
+                <a href="/#services">Services</a>
+                <a href="/#projects">Work</a>
+                <a href="/blog.html" style="color:#fff;">Blog</a>
+                <a href="/#contact" class="nav-cta">Let's Talk</a>
+            </nav>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <nav class="nav-menu" id="navMenu">
+        <a href="/#about">About</a>
+        <a href="/#agency">Venture</a>
+        <a href="/#portfolio">Stack</a>
+        <a href="/#services">Services</a>
+        <a href="/#projects">Work</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#contact">Contact</a>
+    </nav>
+
+    <div class="blog-page-hero">
+        <div class="label">WRITING</div>
+        <h1>Thoughts &amp; Insights</h1>
+        <p>Ideas on software engineering, system design, entrepreneurship, and the craft of building things that matter.</p>
+    </div>
+
+    <div class="blog-filters" id="filterContainer">
+        <button class="filter-btn active" data-category="all">All</button>
+    </div>
+
+    <div class="blog-listing">
+        <div class="blog-listing-grid" id="blogGrid">
+            <!-- Skeleton loaders -->
+            <div class="skeleton-card">
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line skeleton-img"></div>
+                <div class="skeleton-line full"></div>
+                <div class="skeleton-line medium"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line skeleton-img"></div>
+                <div class="skeleton-line full"></div>
+                <div class="skeleton-line medium"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line skeleton-img"></div>
+                <div class="skeleton-line full"></div>
+                <div class="skeleton-line medium"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">ABU MD. SELIM</div>
+            <div class="footer-copy">© 2025 Abu Md. Selim. All rights reserved.</div>
+            <div class="footer-links"><a href="https://inievo.com" target="_blank">Inievo Technologies</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = 'https://hvowhpvokaiwionmymzm.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh2b3docHZva2Fpd2lvbm15bXptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NTExMDYsImV4cCI6MjA5NjAyNzEwNn0.J6SzBI56D9lqXyHK9666kJJd0rXVIhgANa71EYQzgU0';
+
+        let allPosts = [];
+        let activeCategory = 'all';
+
+        async function fetchPosts() {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/posts?status=eq.published&order=published_at.desc`, {
+                headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+            });
+            return res.json();
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+        }
+
+        function renderPosts(posts) {
+            const grid = document.getElementById('blogGrid');
+            if (!posts.length) {
+                grid.innerHTML = `<div class="blog-empty" style="grid-column:1/-1"><h3>No posts yet.</h3><p>Check back soon — thoughts are brewing.</p></div>`;
+                return;
+            }
+            grid.innerHTML = posts.map(post => `
+                <a class="blog-listing-card" href="blog-post.html?slug=${post.slug}">
+                    <div class="card-top">
+                        <span class="card-category">${post.category || ''}</span>
+                        <span class="card-date">${formatDate(post.published_at)}</span>
+                    </div>
+                    ${post.cover_image ? `<img class="card-cover" src="${post.cover_image}" alt="${post.title}" loading="lazy">` : ''}
+                    <h2>${post.title}</h2>
+                    <p>${post.excerpt || ''}</p>
+                    <div class="card-footer">
+                        <div class="card-tags">${(post.tags || []).slice(0,3).map(t => `<span class="card-tag">${t}</span>`).join('')}</div>
+                        <span class="card-read-time">${post.reading_time ? post.reading_time + ' min read' : ''}</span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function buildFilters(posts) {
+            const categories = [...new Set(posts.map(p => p.category).filter(Boolean))];
+            const container = document.getElementById('filterContainer');
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn';
+                btn.dataset.category = cat;
+                btn.textContent = cat;
+                container.appendChild(btn);
+            });
+            container.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activeCategory = btn.dataset.category;
+                    container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filtered = activeCategory === 'all' ? allPosts : allPosts.filter(p => p.category === activeCategory);
+                    renderPosts(filtered);
+                });
+            });
+        }
+
+        async function init() {
+            try {
+                allPosts = await fetchPosts();
+                buildFilters(allPosts);
+                renderPosts(allPosts);
+            } catch(e) {
+                document.getElementById('blogGrid').innerHTML = `<div class="blog-empty" style="grid-column:1/-1"><h3>Could not load posts.</h3><p>Please try again later.</p></div>`;
+            }
+        }
+        init();
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+    </script>
+</body>
+</html>
