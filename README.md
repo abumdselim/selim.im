@@ -1,6 +1,6 @@
 <!-- Profile README for abumdselim -->
 
-<h1 align="center">Abu Md. Selim</h1>
+<h1 align="center">ABU MD. SELIM</h1>
 
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;Building+Hyperlocal+Apps+for+Bangladesh;Open+Source+Contributor;Lead+Ops+%26+Tech+at+Inievo+Technologies;Always+Learning%2C+Always+Building" alt="Typing SVG" />
