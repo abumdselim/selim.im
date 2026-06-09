@@ -6,8 +6,6 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Full+Stack+Developer;Building+Hyperlocal+Apps+for+Bangladesh;Open+Source+Contributor;Lead+Ops+%26+Tech+at+Inievo+Technologies;Always+Learning%2C+Always+Building" alt="Typing SVG" />
 </p>
 
-<p align="center">
-  <samp>Chattogram, Bangladesh</samp>
 </p>
 
 <p align="center">
@@ -16,7 +14,7 @@
 
 ---
 
-### 💼 About Me
+###  About Me
 
 I am a passionate **Full Stack Developer** based in Chattogram, Bangladesh, with a strong focus on building scalable, maintainable, and user-centric web applications. I thrive at the intersection of clean architecture and thoughtful UI/UX, bridging the gap between robust backend systems and polished frontend experiences.
 
@@ -24,11 +22,8 @@ With a deep interest in modern web technologies, I continuously refine my craft 
 
 I actively contribute to open-source projects and embrace collaborative development, valuing clean code, meaningful documentation, and engineering best practices. I am always open to new challenges, impactful collaborations, and learning opportunities.
 
-> *"Code is like humor. When you have to explain it, it's bad."* — Cory House
 
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### 🌐 Frontend
 <p align="left">
@@ -84,7 +79,37 @@ I actively contribute to open-source projects and embrace collaborative developm
 
 ---
 
-## 🚀 Featured Projects
+
+## 📊 GitHub Stats
+
+<div align="center">
+
+[![GitHub Streak](https://streak-stats.demolab.com/?user=abumdselim&theme=tokyonight&hide_border=true&border_radius=10&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
+
+</div>
+
+<div align="center">
+
+[![Profile Summary](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)
+
+</div>
+
+<div align="center">
+
+[![Repos per Language](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)&nbsp;&nbsp;
+[![Most Commit Language](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)
+
+</div>
+
+<div align="center">
+
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=abumdselim&theme=tokyo-night&hide_border=true&radius=8)](https://github.com/abumdselim)
+
+</div>
+
+---
+
+## Featured Projects
 
 <table width="100%">
 <tr>
@@ -142,7 +167,7 @@ I actively contribute to open-source projects and embrace collaborative developm
       <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
     </td>
     <td valign="top">
-      <strong>🤖 AI & Services</strong><br/><br/>
+      <strong> AI & Services</strong><br/><br/>
       <img src="https://img.shields.io/badge/Firebase_Genkit-4285F4?style=flat-square&logo=google&logoColor=white" />
       <img src="https://img.shields.io/badge/Gemini_AI-8E75B2?style=flat-square&logo=google-gemini&logoColor=white" />
       <img src="https://img.shields.io/badge/SSE_Realtime-000000?style=flat-square&logo=server&logoColor=white" />
@@ -236,35 +261,6 @@ I actively contribute to open-source projects and embrace collaborative developm
 ---
 
 
-
-## 📊 GitHub Stats
-
-<div align="center">
-
-[![GitHub Streak](https://streak-stats.demolab.com/?user=abumdselim&theme=tokyonight&hide_border=true&border_radius=10&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
-
-</div>
-
-<div align="center">
-
-[![Profile Summary](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)
-
-</div>
-
-<div align="center">
-
-[![Repos per Language](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)&nbsp;&nbsp;
-[![Most Commit Language](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=abumdselim&theme=tokyonight)](https://github.com/abumdselim)
-
-</div>
-
-<div align="center">
-
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=abumdselim&theme=tokyo-night&hide_border=true&radius=8)](https://github.com/abumdselim)
-
-</div>
-
----
 
 ## 🌐 Let's Connect
 
