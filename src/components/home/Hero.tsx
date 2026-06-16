@@ -40,6 +40,45 @@ function StatPill({ stat, compact = false }: { stat: { value: string; label: str
   );
 }
 
+function HeroSlideProgress({
+  current,
+  onSelect,
+  className = "",
+}: {
+  current: number;
+  onSelect: (index: number) => void;
+  className?: string;
+}) {
+  const progressStyle = { "--hero-progress-duration": `${HERO_AUTOPLAY_SECONDS}s` } as React.CSSProperties;
+
+  return (
+    <div
+      className={`hero-slide-progress ${className}`}
+      style={progressStyle}
+      aria-label="Hero slide progress"
+    >
+      <div className="flex items-center gap-2 sm:gap-2.5 w-full max-w-xs sm:max-w-sm lg:max-w-[240px]">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onSelect(i)}
+            className="flex-1 min-h-[36px] py-2 px-1 bg-transparent border-0 cursor-pointer hover:opacity-80 transition-opacity duration-300 flex items-center"
+            aria-label={`Go to slide ${i + 1}`}
+          >
+            <div className="h-[3px] w-full bg-slate-200/80 rounded-full overflow-hidden">
+              <div
+                className={`h-full bg-[#137ece] rounded-full ${current === i ? "progress-bar-fill progress-bar-fill-active" : "progress-bar-fill w-0 bg-[#137ece]/20"}`}
+                key={current === i ? `active-${current}` : `idle-${i}`}
+              />
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Hero() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -153,26 +192,11 @@ export function Hero() {
             ))}
           </div>
 
-          <div className="hidden lg:flex w-full justify-start">
-            <div className="flex items-center gap-2 sm:gap-2.5 w-full max-w-[240px]" aria-label="Hero slide progress">
-              {HERO_SLIDES.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setCurrent(i)}
-                  className="flex-1 min-h-[36px] py-2 px-1 bg-transparent border-0 cursor-pointer hover:opacity-80 transition-opacity duration-300 flex items-center"
-                  aria-label={`Go to slide ${i + 1}`}
-                >
-                  <div className="h-[3px] w-full bg-slate-200/80 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full bg-[#137ece] rounded-full ${current === i ? "progress-bar-fill progress-bar-fill-active" : "progress-bar-fill w-0 bg-[#137ece]/20"}`}
-                      key={current === i ? `active-${i}-${Date.now()}` : `idle-${i}`}
-                    />
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
+          <HeroSlideProgress
+            current={current}
+            onSelect={setCurrent}
+            className="hidden lg:flex w-full justify-start"
+          />
 
           <div className={`grid w-full mt-3 sm:mt-5 lg:mt-0 ${REVEAL_DELAY_2}`}>
             {HERO_SLIDES.map((slide, i) => (
@@ -192,17 +216,11 @@ export function Hero() {
         </div>
         </div>
 
-        <div className={`lg:hidden relative z-10 w-full flex justify-center px-4 pt-1 pb-[max(1rem,env(safe-area-inset-bottom))] sm:pb-5 mt-auto ${REVEAL_DELAY_2}`}>
-          <div className="flex items-center gap-2 sm:gap-2.5 w-full max-w-xs sm:max-w-sm">
-            {HERO_SLIDES.map((_, i) => (
-              <button key={i} type="button" onClick={() => setCurrent(i)} className="flex-1 min-h-[36px] py-2 px-1 bg-transparent border-0 cursor-pointer flex items-center">
-                <div className="h-[3px] w-full bg-slate-200/80 rounded-full overflow-hidden">
-                  <div className={`h-full bg-[#137ece] rounded-full ${current === i ? "progress-bar-fill progress-bar-fill-active" : "progress-bar-fill w-0"}`} />
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
+        <HeroSlideProgress
+          current={current}
+          onSelect={setCurrent}
+          className="lg:hidden relative z-10 w-full flex justify-center px-4 pt-1 pb-[max(1rem,env(safe-area-inset-bottom))] sm:pb-5 mt-auto"
+        />
       </div>
     </section>
   );

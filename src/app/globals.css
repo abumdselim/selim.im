@@ -109,7 +109,12 @@
 }
 .progress-bar-fill-active {
   width: 0;
-  animation: inievo-hero-progress 5.5s linear forwards;
+  animation: inievo-hero-progress var(--hero-progress-duration, 5.5s) linear forwards;
+}
+
+.hero-slide-progress {
+  opacity: 1;
+  transform: none;
 }
 
 .inievo-reveal {
