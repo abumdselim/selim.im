@@ -13,9 +13,17 @@ import {
 } from "@/lib/constants-supplement";
 import { FooterSocialButton } from "@/components/ui/SocialIcon";
 
-function FooterColumn({ title, links }: { title: string; links: readonly (readonly [string, string])[] }) {
+function FooterColumn({
+  title,
+  links,
+  className = "",
+}: {
+  title: string;
+  links: readonly (readonly [string, string])[];
+  className?: string;
+}) {
   return (
-    <div>
+    <div className={className}>
       <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-4">{title}</p>
       <ul className="space-y-3">
         {links.map(([label, href]) => (
@@ -29,6 +37,13 @@ function FooterColumn({ title, links }: { title: string; links: readonly (readon
     </div>
   );
 }
+
+const FOOTER_LINK_COLUMNS = [
+  { title: "Company", links: FOOTER_COMPANY_LINKS, mobileCellClass: "border-r border-b border-slate-800/80" },
+  { title: "Work", links: footerWorkLinks(), mobileCellClass: "border-b border-slate-800/80" },
+  { title: "Industries", links: FOOTER_INDUSTRIES_LINKS, mobileCellClass: "border-r border-slate-800/80" },
+  { title: "Connect", links: FOOTER_CONNECT_LINKS, mobileCellClass: "" },
+] as const;
 
 export function MegaFooter() {
   return (
@@ -53,11 +68,15 @@ export function MegaFooter() {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 lg:px-8 pb-16 pt-2 border-t border-slate-800/80">
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 sm:gap-6 lg:gap-10 w-full">
-          <FooterColumn title="Company" links={FOOTER_COMPANY_LINKS} />
-          <FooterColumn title="Work" links={footerWorkLinks()} />
-          <FooterColumn title="Industries" links={FOOTER_INDUSTRIES_LINKS} />
-          <FooterColumn title="Connect" links={FOOTER_CONNECT_LINKS} />
+        <div className="grid grid-cols-2 sm:grid-cols-4 w-full sm:gap-6 lg:gap-10">
+          {FOOTER_LINK_COLUMNS.map((column) => (
+            <FooterColumn
+              key={column.title}
+              title={column.title}
+              links={column.links}
+              className={`px-4 py-5 sm:px-0 sm:py-0 text-left ${column.mobileCellClass} sm:border-0`}
+            />
+          ))}
         </div>
       </div>
       <div className="border-t border-slate-800 py-6 px-4">
