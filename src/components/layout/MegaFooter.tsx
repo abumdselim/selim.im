@@ -61,18 +61,10 @@ export function MegaFooter() {
         </div>
       </div>
       <div className="border-t border-slate-800 py-6 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-3 text-center sm:text-left">
+        <div className="max-w-7xl mx-auto text-center sm:text-left">
           <p className="text-slate-500 text-sm">
             © 2026 Inievo Technologies. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm">
-            <Link href="/privacy-policy" className="text-slate-400 hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-and-conditions" className="text-slate-400 hover:text-white transition-colors">
-              Terms & Conditions
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
