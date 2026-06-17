@@ -38,7 +38,7 @@ export function Navbar({ navTheme = "light", solid = false }: NavbarProps) {
       data-nav-mode={navMode}
     >
       <div className="inievo-navbar-inner max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between relative">
-        <Link href="/" onClick={close} className="shrink-0 z-10">
+        <Link href="/" onClick={close} className="shrink-0 z-10" scroll={true}>
           <Image
             src={LOGO_URL}
             alt="Inievo"
