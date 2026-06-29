@@ -1,4 +1,4 @@
-/* Design tokens — mirrored from root style.css */
+﻿/* Design tokens â€” mirrored from root style.css */
 :root {
   --bg: #080808;
   --bg-2: #0d0d0d;
@@ -58,7 +58,7 @@ a {
   text-decoration: none;
 }
 
-/* P0 placeholder — replaced in P1 homepage migration */
+/* P0 placeholder â€” replaced in P1 homepage migration */
 .migration-placeholder {
   display: flex;
   flex-direction: column;
@@ -103,7 +103,7 @@ a {
 }
 
 /* ============================================================
-   HEADER — hidden by default, appears after scrolling past hero
+   HEADER â€” hidden by default, appears after scrolling past hero
    ============================================================ */
 .top-sticky-header {
   position: fixed;
@@ -322,7 +322,7 @@ body.menu-open::after {
 }
 
 /* ============================================================
-   HERO — full-viewport, image shown in full on desktop
+   HERO â€” full-viewport, image shown in full on desktop
    ============================================================ */
 .hero {
   position: relative;
@@ -339,19 +339,19 @@ body.menu-open::after {
   inset: 0;
 }
 
-/* Desktop: show full image (object-fit: contain) */
+/* Desktop: cover full viewport (no side bars) */
 .profile-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
+  object-position: center center;
 }
 
 /* Mobile: cover to fill viewport */
 @media (max-width: 768px) {
   .profile-img {
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
   }
 }
 
@@ -363,8 +363,8 @@ body.menu-open::after {
   height: 50%;
   background: linear-gradient(
     to top,
-    #000 0%,
-    rgba(0, 0, 0, 0.8) 20%,
+    #080808 0%,
+    rgba(8, 8, 8, 0.8) 20%,
     transparent 100%
   );
   pointer-events: none;
@@ -372,7 +372,7 @@ body.menu-open::after {
 
 .signature-container {
   position: absolute;
-  bottom: 55px;
+  bottom: 38px;
   left: 50%;
   transform: translateX(-50%);
   width: 260px;
@@ -1238,7 +1238,7 @@ body.menu-open::after {
 }
 
 /* ============================================================
-   CASE STUDY — project hero, details, contact variant
+   CASE STUDY â€” project hero, details, contact variant
    ============================================================ */
 .top-logo {
   text-decoration: none;
@@ -1696,7 +1696,7 @@ body.menu-open::after {
 
   .signature-container {
     width: 200px;
-    bottom: 48px;
+    bottom: 32px;
   }
 
   .scroll-down {
@@ -1766,7 +1766,7 @@ body.menu-open::after {
   }
 }
 
-/* Skip link — visible on keyboard focus only */
+/* Skip link â€” visible on keyboard focus only */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -1785,7 +1785,7 @@ body.menu-open::after {
   top: 16px;
 }
 
-/* Screen-reader only — semantic headings without visual layout change */
+/* Screen-reader only â€” semantic headings without visual layout change */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -1797,3 +1797,5 @@ body.menu-open::after {
   white-space: nowrap;
   border: 0;
 }
+
+
