@@ -137,7 +137,7 @@
                 </label>
 
                 <label>Mother's Name (Bangla)
-                    <input type="text" id="motherBn" value="মোছাজা বেগম" />
+                    <input type="text" id="motherBn" value="খোদেজা বেগম" />
                 </label>
                 <label>Mother's Name (English)
                     <input type="text" id="motherEn" value="MOCAZA BEGUM" />
@@ -149,12 +149,15 @@
                 <label>Blood Group
                     <input type="text" id="blood" value="AB+" maxlength="3" />
                 </label>
+                <label>Place of Birth / জন্মস্থান
+                    <input type="text" id="birthPlace" value="চট্টগ্রাম" />
+                </label>
             </div>
 
             <h3>Address</h3>
             <label>Address (Bangla)
                 <textarea id="addressBn"
-                    rows="2">বাসা/হোল্ডিং: ৩৭৯, গ্রাম/রাস্তা: হাবলা, হাবলা, ডাকঘর: পূর্ব জোড়আটা - ৪৩৮০, চন্দনাঈ, চন্দনাঈন পৌরসভা, চট্টগ্রাম</textarea>
+                    rows="2">বাসা/হোল্ডিং: ৩৭৯, গ্রাম/রাস্তা: হারলা, হারালা, ডাকঘর: পূর্ব জোয়ারা - ৪৩৮০, চন্দনাইশ, চান্দনাইশ পৌরসভা, চট্টগ্রাম</textarea>
             </label>
 
             <h3>Issue &amp; Provider</h3>
@@ -288,71 +291,43 @@
                         </div>
 
                         <div class="layer">
-                            <div class="card-head">
-                                <div class="head-emblem">
-                                    <div class="ph">EMBLEM</div>
-                                </div>
-                                <div class="head-text">
-                                    <div class="gov-bn">এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের সম্পত্তি।</div>
-                                    <div class="gov-en">This card is the property of the Government of the People's
-                                        Republic of Bangladesh.</div>
-                                </div>
-                            </div>
-
                             <div class="back-body">
-                                <div class="disclaimer bn-text">
-                                    <b>কার্ডটি ব্যবহারকারী ব্যতীত অন্য কেউ এই কার্ডটি ধারণ করলে নিকটস্থ পোস্ট অফিসে জমা
-                                        দেবার জন্য অনুরোধ করা হলো।</b>
+                                <div class="notice-box bn-text">
+                                    এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের সম্পত্তি। কার্ডটি ব্যবহারকারী ব্যতীত অন্য কোথাও পাওয়া গেলে নিকটস্থ পোস্ট অফিসে জমা দেবার জন্য অনুরোধ করা হলো।
                                 </div>
 
                                 <div class="address-box bn-text">
                                     <div><span class="lbl">ঠিকানা:</span><span class="val"
-                                            id="v_addressBn">বাসা/হোল্ডিং: ৩৭৯, গ্রাম/রাস্তা: হাবলা, হাবলা, ডাকঘর: পূর্ব
-                                            জোড়আটা - ৪৩৮০, চন্দনাঈ, চন্দনাঈন পৌরসভা, চট্টগ্রাম</span></div>
+                                            id="v_addressBn">বাসা/হোল্ডিং: ৩৭৯, গ্রাম/রাস্তা: হারলা, হারালা, ডাকঘর: পূর্ব জোয়ারা - ৪৩৮০, চন্দনাইশ, চান্দনাইশ পৌরসভা, চট্টগ্রাম</span></div>
                                 </div>
 
                                 <div class="row-mid">
                                     <div class="blood bn-text">
-                                        <span><b>রক্তের গ্রুপ / Blood Group:</b> <span class="v"
-                                                id="v_blood">AB+</span></span>
+                                        <div class="blood-line"><b>রক্তের গ্রুপ / Blood Group:</b> <span class="v" id="v_blood">AB+</span></div>
+                                        <div class="blood-line"><b>জন্মস্থান:</b> <span id="v_birthPlace">চট্টগ্রাম</span></div>
                                     </div>
-                                    <div class="mulep-box bn-text">
-                                        <span class="lbl">মূলেপ:</span>
-                                        <span id="v_mulep">০১</span>
-                                    </div>
-                                    <div class="mulep-box bn-text">
-                                        <span class="lbl">মুদ্রণ সংখ্যা:</span>
+                                    <div class="print-box bn-text">
+                                        <span class="lbl">মুদ্রণ:</span>
                                         <span id="v_printCount">০১</span>
-                                    </div>
-                                    <div class="mulep-box bn-text">
-                                        <span class="lbl">প্রদানের স্থান:</span>
-                                        <span id="v_placeOfIssue">চট্টগ্রাম</span>
                                     </div>
                                 </div>
 
-                                <div class="sig-row">
-                                    <div class="sig-box">
-                                        <img id="sigBoxImg" alt="holder signature" />
+                                <div class="sig-row provider-row">
+                                    <div class="sig-provider">
+                                        <div class="sig-box">
+                                            <img id="provSigImg" alt="provider signature" />
+                                        </div>
+                                        <div class="sig-cap bn-text">প্রদানকারী কর্তৃপক্ষের স্বাক্ষর</div>
                                     </div>
-                                    <div class="sig-box">
-                                        <img id="provSigImg" alt="provider signature" />
-                                    </div>
-                                </div>
-                                <div class="sig-row" style="margin-top:0">
-                                    <div class="sig-cap bn-text">বহনকারীর স্বাক্ষর</div>
-                                    <div class="sig-cap">
-                                        <span>প্রদানকারী কর্তৃপক্ষের স্বাক্ষর ও তারিখ:</span>
-                                        <span id="v_issueDate" style="color:#d40000;font-weight:700">05/03/2022</span>
+                                    <div class="sig-date bn-text">
+                                        <span class="lbl">প্রদানের তারিখ:</span>
+                                        <span id="v_issueDate" class="issue-date">05/03/2022</span>
                                     </div>
                                 </div>
 
                                 <div class="barcode-row">
+                                    <div class="qr-box" id="qrBox"></div>
                                     <div class="barcode" id="barcodeBox"></div>
-                                    <div class="barcode-info">
-                                        <div><b>ID:</b> <span id="v_nid2">5565395349</span></div>
-                                        <div><b>মুদ্রণ:</b> <span id="v_printCount2">০১</span></div>
-                                        <div><b>প্রদানের স্থান:</b> <span id="v_placeOfIssue2">চট্টগ্রাম</span></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -408,4 +383,4 @@
     <script src="/tools/id-card/app.js"></script>
 </body>
 
-</html>
+</html>

@@ -15,6 +15,7 @@
         ['motherEn', 'v_motherEn'],
         ['dob', 'v_dob'],
         ['blood', 'v_blood'],
+        ['birthPlace', 'v_birthPlace'],
         ['addressBn', 'v_addressBn'],
         ['addressEn', 'v_addressEn'],
         ['issueDate', 'v_issueDate'],
@@ -36,6 +37,7 @@
         if (pinDest) pinDest.textContent = $('pin').value || '------';
         // Render barcode whenever NID or PIN changes
         renderBarcode();
+        renderQR();
     }
 
     function bindInputs() {
@@ -100,16 +102,19 @@
     $('sigInput').addEventListener('change', () => setImageOnSlot('sigInput', 'sigBoxImg'));
     $('provSigInput').addEventListener('change', () => setImageOnSlot('provSigInput', 'provSigImg'));
 
+    function getPayload() {
+        const nid = ($('nidNo').value || '').replace(/\s+/g, '');
+        const dob = ($('dob').value || '').trim();
+        return nid + (dob ? '|' + dob : '');
+    }
+
     // ---- Barcode (Code128) ----
     function renderBarcode() {
         const box = $('barcodeBox');
         if (!box) return;
         box.innerHTML = '<canvas></canvas>';
         const canvas = box.querySelector('canvas');
-        // Use NID + DOB as barcode payload (compact form)
-        const nid = ($('nidNo').value || '').replace(/\s+/g, '');
-        const dob = ($('dob').value || '').trim();
-        const payload = nid + (dob ? '|' + dob : '');
+        const payload = getPayload();
         try {
             if (typeof JsBarcode !== 'undefined') {
                 JsBarcode(canvas, payload || '0000000000', {
@@ -140,6 +145,20 @@
                 }
             }
         } catch { /* ignore */ }
+    }
+
+    function renderQR() {
+        const box = $('qrBox');
+        if (!box) return;
+        const payload = getPayload();
+        try {
+            const qr = qrcode(0, 'M');
+            qr.addData(payload || '0000000000');
+            qr.make();
+            box.innerHTML = qr.createImgTag(4, 0);
+        } catch {
+            box.innerHTML = '<div class="qr-fallback">QR</div>';
+        }
     }
 
     // ---- Export (PNG / JPG via html2canvas) ----
@@ -198,11 +217,9 @@
         document.querySelectorAll('.head-emblem').forEach((s) => {
             s.innerHTML = '<div class="ph">EMBLEM</div>';
         });
-        document.querySelectorAll('.nid-card .watermark').forEach((s) => {
-            s.innerHTML = '<div class="ph">WATERMARK</div>';
-        });
         document.querySelectorAll('input[type="file"]').forEach((i) => { i.value = ''; });
         setDefaultEmblem();
+        setDefaultWatermark();
         syncAll();
     });
 
@@ -215,10 +232,18 @@
         });
     }
 
+    function setDefaultWatermark() {
+        document.querySelectorAll('.nid-card .watermark').forEach((slot) => {
+            if (slot.querySelector('img')) return;
+            slot.innerHTML = '<img src="/tools/id-card/emblem.svg" alt="Bangladesh national emblem" />';
+        });
+    }
+
     // ---- Init ----
     document.addEventListener('DOMContentLoaded', () => {
         bindInputs();
         setDefaultEmblem();
+        setDefaultWatermark();
         syncAll();
     });
 })();
