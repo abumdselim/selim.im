@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BD NID Generator — V13</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/tools/id-card/styles.css" />
+    <style>
+        /* ===== Password gate ===== */
+        #gate {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0b2540 0%, #102a43 100%);
+        }
+
+        #gate form {
+            background: #fff;
+            padding: 28px 26px;
+            border-radius: 14px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+            width: 320px;
+            max-width: 90vw;
+            text-align: center;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+
+        #gate h2 {
+            margin: 0 0 6px;
+            font-size: 18px;
+            color: #102a43;
+        }
+
+        #gate p {
+            margin: 0 0 16px;
+            font-size: 12px;
+            color: #627d98;
+        }
+
+        #gate input {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #bcccdc;
+            border-radius: 8px;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+
+        #gate input:focus {
+            outline: none;
+            border-color: #006a4e;
+            box-shadow: 0 0 0 3px rgba(0, 106, 78, 0.15);
+        }
+
+        #gate button {
+            width: 100%;
+            padding: 11px 12px;
+            border: none;
+            border-radius: 8px;
+            background: #006a4e;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #gate button:hover {
+            background: #00553e;
+        }
+
+        #gateErr {
+            color: #b50e0e;
+            font-size: 12px;
+            min-height: 16px;
+            margin-top: 8px;
+        }
+
+        body.locked #appRoot {
+            display: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"></script>
+</head>
+
+<body class="locked">
+    <div id="gate">
+        <form id="gateForm" autocomplete="off">
+            <h2>🔒 Protected Tool</h2>
+            <p>Enter the password to access the NID generator.</p>
+            <input type="password" id="gatePass" placeholder="Password" autofocus />
+            <button type="submit">Unlock</button>
+            <div id="gateErr"></div>
+        </form>
+    </div>
+    <div id="appRoot">
+    <header class="topbar">
+        <h1>🇧🇩 Bangladesh NID Card Generator</h1>
+        <p class="subtitle">NID V13-style mock. Upload emblem/watermark photos and your own portrait to match your
+            reference.</p>
+    </header>
+
+    <main class="layout">
+        <!-- ============== FORM ============== -->
+        <section class="panel form-panel">
+            <h2>Card Details</h2>
+
+            <div class="grid-2">
+                <label>National ID Number
+                    <input type="text" id="nidNo" maxlength="17" value="5565395349" />
+                </label>
+                <label>PIN (optional)
+                    <input type="text" id="pin" maxlength="6" value="" placeholder="optional" />
+                </label>
+
+                <label>Name (Bangla)
+                    <input type="text" id="nameBn" value="আবু মোঃ সেলিম" />
+                </label>
+                <label>Name (English)
+                    <input type="text" id="nameEn" value="ABU MD. SELIM" />
+                </label>
+
+                <label>Father's Name (Bangla)
+                    <input type="text" id="fatherBn" value="মোঃ আবুল খায়ের" />
+                </label>
+                <label>Father's Name (English)
+                    <input type="text" id="fatherEn" value="MD. ABUL KHAYER" />
+                </label>
+
+                <label>Mother's Name (Bangla)
+                    <input type="text" id="motherBn" value="মোছাজা বেগম" />
+                </label>
+                <label>Mother's Name (English)
+                    <input type="text" id="motherEn" value="MOCAZA BEGUM" />
+                </label>
+
+                <label>Date of Birth
+                    <input type="text" id="dob" value="19 Jan 2002" />
+                </label>
+                <label>Blood Group
+                    <input type="text" id="blood" value="AB+" maxlength="3" />
+                </label>
+            </div>
+
+            <h3>Address</h3>
+            <label>Address (Bangla)
+                <textarea id="addressBn"
+                    rows="2">বাসা/হোল্ডিং: ৩৭৯, গ্রাম/রাস্তা: হাবলা, হাবলা, ডাকঘর: পূর্ব জোড়আটা - ৪৩৮০, চন্দনাঈ, চন্দনাঈন পৌরসভা, চট্টগ্রাম</textarea>
+            </label>
+
+            <h3>Issue &amp; Provider</h3>
+            <div class="grid-2">
+                <label>Issue Date
+                    <input type="text" id="issueDate" value="05/03/2022" />
+                </label>
+                <label>Issue Number / মূলেপ নং
+                    <input type="text" id="mulep" value="০১" />
+                </label>
+                <label>মুদ্রণ সংখ্যা / Print Count
+                    <input type="text" id="printCount" value="০১" />
+                </label>
+                <label>প্রদানের স্থান / Place of Issue
+                    <input type="text" id="placeOfIssue" value="চট্টগ্রাম" />
+                </label>
+            </div>
+
+            <h3>Images</h3>
+            <label>National Emblem (left side of header)
+                <input type="file" id="emblemInput" accept="image/*" />
+                <small>Upload your own emblem image (e.g. Bangladesh national emblem).</small>
+            </label>
+            <label>Background Watermark (large portrait/illustration)
+                <input type="file" id="watermarkInput" accept="image/*" />
+                <small>Upload your own watermark image (e.g. national figure).</small>
+            </label>
+            <label>Portrait Photo
+                <input type="file" id="photoInput" accept="image/*" />
+                <small>Front-side photo.</small>
+            </label>
+            <label>Holder Signature
+                <input type="file" id="sigInput" accept="image/*" />
+                <small>Signature image (transparent background).</small>
+            </label>
+            <label>Provider Signature
+                <input type="file" id="provSigInput" accept="image/*" />
+                <small>Issuing authority signature image.</small>
+            </label>
+
+            <div class="actions">
+                <button id="dlPng" class="btn primary">⬇ Download PNG</button>
+                <button id="dlJpg" class="btn">⬇ Download JPG</button>
+                <button id="printBtn" class="btn">🖨 Print</button>
+                <button id="resetBtn" class="btn danger">↺ Reset</button>
+            </div>
+
+            <p class="warn">⚠ Producing fake National ID cards is illegal. This tool is for design mockups only.</p>
+            <p class="note">Tip: Upload the official emblem and watermark images locally — these aren't bundled for IP
+                reasons.</p>
+        </section>
+
+        <!-- ============== PREVIEW ============== -->
+        <section class="panel preview-panel">
+            <h2>Live Preview</h2>
+            <div class="card-stage" id="cardStage">
+
+                <!-- ============ FRONT ============ -->
+                <div class="card-wrap">
+                    <div class="nid-card nid-front" id="cardFront">
+                        <div class="watermark" id="wmFront">
+                            <div class="ph">WATERMARK</div>
+                        </div>
+
+                        <div class="layer">
+                            <div class="card-head">
+                                <div class="head-emblem" id="emblemBox">
+                                    <div class="ph">EMBLEM</div>
+                                </div>
+                                <div class="head-text">
+                                    <div class="gov-bn">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</div>
+                                    <div class="gov-en">Government of the People's Republic of Bangladesh</div>
+                                    <div class="card-title">
+                                        <span class="en-red">National ID Card</span>
+                                        <span class="slash">/</span>
+                                        <span>জাতীয় পরিচয় পত্র</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="photo-col">
+                                    <div class="photo-box">
+                                        <img id="photoFront" alt="portrait" />
+                                    </div>
+                                    <div class="cr-caption">
+                                        <span class="bn">"ছবি: সেলিম"</span>
+                                    </div>
+                                </div>
+
+                                <div class="data-col">
+                                    <div class="field bn">
+                                        <span class="lbl">নাম:</span>
+                                        <span class="val" id="v_nameBn">আবু মোঃ সেলিম</span>
+                                    </div>
+                                    <div class="field">
+                                        <span class="lbl-en">Name:</span>
+                                        <span class="val" id="v_nameEn">ABU MD. SELIM</span>
+                                    </div>
+
+                                    <div class="field bn">
+                                        <span class="lbl">পিতা:</span>
+                                        <span class="val" id="v_fatherBn">মোঃ আবুল খায়ের</span>
+                                    </div>
+
+                                    <div class="field bn">
+                                        <span class="lbl">মাতা:</span>
+                                        <span class="val" id="v_motherBn">মোছাজা বেগম</span>
+                                    </div>
+
+                                    <div class="field">
+                                        <span class="lbl-en">Date of Birth:</span>
+                                        <span class="dob-val" id="v_dob">19 Jan 2002</span>
+                                    </div>
+
+                                    <div class="field">
+                                        <span class="lbl-en">ID NO:</span>
+                                        <span class="val red" id="v_nid">5565395349</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ BACK ============ -->
+                <div class="card-wrap">
+                    <div class="nid-card nid-back" id="cardBack">
+                        <div class="watermark" id="wmBack">
+                            <div class="ph">WATERMARK</div>
+                        </div>
+
+                        <div class="layer">
+                            <div class="card-head">
+                                <div class="head-emblem">
+                                    <div class="ph">EMBLEM</div>
+                                </div>
+                                <div class="head-text">
+                                    <div class="gov-bn">এই কার্ডটি গণপ্রজাতন্ত্রী বাংলাদেশ সরকারের সম্পত্তি।</div>
+                                    <div class="gov-en">This card is the property of the Government of the People's
+                                        Republic of Bangladesh.</div>
+                                </div>
+                            </div>
+
+                            <div class="back-body">
+                                <div class="disclaimer bn-text">
+                                    <b>কার্ডটি ব্যবহারকারী ব্যতীত অন্য কেউ এই কার্ডটি ধারণ করলে নিকটস্থ পোস্ট অফিসে জমা
+                                        দেবার জন্য অনুরোধ করা হলো।</b>
+                                </div>
+
+                                <div class="address-box bn-text">
+                                    <div><span class="lbl">ঠিকানা:</span><span class="val"
+                                            id="v_addressBn">বাসা/হোল্ডিং: ৩৭৯, গ্রাম/রাস্তা: হাবলা, হাবলা, ডাকঘর: পূর্ব
+                                            জোড়আটা - ৪৩৮০, চন্দনাঈ, চন্দনাঈন পৌরসভা, চট্টগ্রাম</span></div>
+                                </div>
+
+                                <div class="row-mid">
+                                    <div class="blood bn-text">
+                                        <span><b>রক্তের গ্রুপ / Blood Group:</b> <span class="v"
+                                                id="v_blood">AB+</span></span>
+                                    </div>
+                                    <div class="mulep-box bn-text">
+                                        <span class="lbl">মূলেপ:</span>
+                                        <span id="v_mulep">০১</span>
+                                    </div>
+                                    <div class="mulep-box bn-text">
+                                        <span class="lbl">মুদ্রণ সংখ্যা:</span>
+                                        <span id="v_printCount">০১</span>
+                                    </div>
+                                    <div class="mulep-box bn-text">
+                                        <span class="lbl">প্রদানের স্থান:</span>
+                                        <span id="v_placeOfIssue">চট্টগ্রাম</span>
+                                    </div>
+                                </div>
+
+                                <div class="sig-row">
+                                    <div class="sig-box">
+                                        <img id="sigBoxImg" alt="holder signature" />
+                                    </div>
+                                    <div class="sig-box">
+                                        <img id="provSigImg" alt="provider signature" />
+                                    </div>
+                                </div>
+                                <div class="sig-row" style="margin-top:0">
+                                    <div class="sig-cap bn-text">বহনকারীর স্বাক্ষর</div>
+                                    <div class="sig-cap">
+                                        <span>প্রদানকারী কর্তৃপক্ষের স্বাক্ষর ও তারিখ:</span>
+                                        <span id="v_issueDate" style="color:#d40000;font-weight:700">05/03/2022</span>
+                                    </div>
+                                </div>
+
+                                <div class="barcode-row">
+                                    <div class="barcode" id="barcodeBox"></div>
+                                    <div class="barcode-info">
+                                        <div><b>ID:</b> <span id="v_nid2">5565395349</span></div>
+                                        <div><b>মুদ্রণ:</b> <span id="v_printCount2">০১</span></div>
+                                        <div><b>প্রদানের স্থান:</b> <span id="v_placeOfIssue2">চট্টগ্রাম</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
+
+    <script>
+        (function () {
+            // SHA-256 hex of the access password (no plaintext stored in source).
+            const PASS_HASH = '91dea64e7bdb8efa1593f76e65b751d8d1c446403cc065ef1a8b30a43ba75615';
+            const STORE_KEY = 'idcard_unlocked';
+            const body = document.body;
+            const gate = document.getElementById('gate');
+            const form = document.getElementById('gateForm');
+            const pass = document.getElementById('gatePass');
+            const err = document.getElementById('gateErr');
+
+            function unlock() {
+                body.classList.remove('locked');
+                if (gate) gate.style.display = 'none';
+            }
+
+            async function sha256Hex(text) {
+                const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+                return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            try {
+                if (localStorage.getItem(STORE_KEY) === PASS_HASH) unlock();
+            } catch (_) { /* ignore */ }
+
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    err.textContent = '';
+                    const hash = await sha256Hex(pass.value || '');
+                    if (hash === PASS_HASH) {
+                        try { localStorage.setItem(STORE_KEY, hash); } catch (_) { /* ignore */ }
+                        unlock();
+                    } else {
+                        err.textContent = 'Incorrect password.';
+                        pass.value = '';
+                        pass.focus();
+                    }
+                });
+            }
+        })();
+    </script>
+    <script src="/tools/id-card/app.js"></script>
+</body>
+
+</html>
