@@ -46,7 +46,7 @@ export default function Header() {
 
 
 
-  if (pathname.startsWith("/studio") || pathname.startsWith("/tools")) {
+  if (pathname.startsWith("/studio")) {
     return null;
   }
 
@@ -131,4 +131,3 @@ export default function Header() {
   );
 
 }
-
